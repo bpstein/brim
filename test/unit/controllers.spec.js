@@ -1,10 +1,10 @@
-describe("NewsSummaryController", function() {
+describe("brimAppController", function() {
   var controller;
 
-  beforeEach(module("newsSummaryApp"));
+  beforeEach(module("brimApp"));
 
   beforeEach(inject(function($controller) {
-    controller = $controller("NewsSummaryController");
+    controller = $controller("brimAppController");
   }));
 
   it("makes exposes a greeting of 'Hello, world'", function() {
