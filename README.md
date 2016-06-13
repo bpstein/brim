@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/bpstein/brim.svg?label=ready&title=Ready)](http://waffle.io/bpstein/brim)
+
 ### BRIM (working title)
 
 ## Authors
