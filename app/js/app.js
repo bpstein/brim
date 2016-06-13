@@ -1,1 +1,1 @@
-var newsSummaryApp = angular.module("newsSummaryApp", []);
+var brimApp = angular.module("brimApp", []);
