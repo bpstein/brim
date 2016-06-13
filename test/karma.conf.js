@@ -11,16 +11,23 @@ module.exports = function(config){
     ],
 
     autoWatch: true,
-
     frameworks: ['jasmine'],
-
     browsers: ['Chrome'],
+    reporters: ['progress', 'coverage', 'coveralls'],
 
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/'
+    },
+    
     plugins: [
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-jasmine',
-      'karma-junit-reporter'
+      'karma-junit-reporter',
+      'karma-phantomjs-launcher',
+      'karma-coverage',
+      'karma-coveralls'
     ],
 
     junitReporter: {
