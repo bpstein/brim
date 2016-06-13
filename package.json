@@ -30,9 +30,6 @@
     "protractor": "^3.3.0",
     "shelljs": "^0.6.0"
   },
-  // "devDependencies": {
-  //    "coveralls": "^2.11.9"
-  // },
  "scripts": {
   "postinstall": "bower install",
 
