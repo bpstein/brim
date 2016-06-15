@@ -1,4 +1,4 @@
-describe('GetTagsFactory', function(){
+describe('GetTagsService', function(){
 
 	beforeEach(module('brimApp'));
 
@@ -7,8 +7,8 @@ describe('GetTagsFactory', function(){
 
 	var data = [{name: "cat"}];
 
-	beforeEach(inject(function(GetTagsFactory,$httpBackend){
-		factory = GetTagsFactory;
+	beforeEach(inject(function(GetTagsService,$httpBackend){
+		factory = GetTagsService;
 		httpbackend = $httpBackend;
 	}));
 

@@ -17,7 +17,7 @@ angular.module("brimApp")
     };
 
     self.getTags = function(tagsearch) {
-		GetTagsFactory.get(tagsearch).success(function(response) {
+		GetTagsService.get(tagsearch).success(function(response) {
 			getResponseSuccess($scope, response, "This hashtag has returned no results" )
       self.tags = response.data;
 		});
