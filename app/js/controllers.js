@@ -17,7 +17,7 @@ angular.module("brimApp")
       vm.map = map;
     });
     vm.callbackFunc = function(param) {
-      console.log('I know where you are ' + param +'.' + vm.message);
+      console.log('I know where' + param + 'are.' + vm.message);
       console.log('You are at' + vm.map.getCenter());
     };
   });
