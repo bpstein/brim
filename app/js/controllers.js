@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module("brimApp")
-  .controller("brimAppController", ['$scope', 'GetTagsFactory', function($scope, GetTagsFactory) {
+  .controller("brimAppController", ['$scope', 'GetTagsService', function($scope, GetTagsService) {
     var self = this;
     $scope.test="testing scope"
     var getResponseSuccess = function(scope, res, err) {

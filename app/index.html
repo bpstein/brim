@@ -11,15 +11,16 @@
   </head>
 
   <body>
-    <div ng-controller="brimAppController as ctrl">
-      <p>{{ctrl.greeting}}</p>
-      <div id="search">
+    <div id='tags' ng-controller="brimAppController as ctrl">
+
         <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
         <button id="searchTagsubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
-        <p id="tag results" ng-repeat='tag in ctrl.tags'>
-        {{ tag.name }}</p>
         {{error}}
-      </div>
+
+      <p ng-repeat='tag in ctrl.tags'>
+        {{ tag.name }}
+      </p>
+
     </div>
   </body>
 </html>

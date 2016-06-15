@@ -28,8 +28,9 @@ describe("brimApp", function() {
     browser.get('/')
     $('#searchTags').sendKeys('cat')
     $('#searchTagsubmit').click()
-    expect($$('#returnedTags').first().getText()).toMatch('cat')
-    expect($$('#returnedTags').last().getText()).toMatch('cat')
+    var tags = $$('#tags p');
+    expect(tags.first().getText()).toMatch('cat')
+    expect(tags.last().getText()).toMatch('cat')
   })
 
 });

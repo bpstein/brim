@@ -16,13 +16,14 @@ exports.config = {
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
-  }
+  },
 
   onPrepare: function(){
     require('protractor-http-mock').config = {
       rootDirectory: process.cwd(),
-      protractorConfig: '/test/protractor.conf.js'
+      protractorConfig: 'test/protractor.conf.js'
     };
   }
 
 };
+
