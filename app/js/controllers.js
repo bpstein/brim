@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module("brimApp")
-  .controller("brimAppController", ['$scope', 'GetTagsService', function($scope, GetTagsService) {
+brimApp.controller("brimAppController", ['$scope', 'GetTagsService',function($scope, GetTagsService) {
+
     var self = this;
+
     $scope.test="testing scope"
     var getResponseSuccess = function(scope, res, err) {
       if (res.meta.code !== 200) {
