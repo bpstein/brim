@@ -18,6 +18,7 @@
         <button id="searchTagsubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
         <p id="tag results" ng-repeat='tag in ctrl.tags'>
         {{ tag.name }}</p>
+        {{error}}
       </div>
     </div>
   </body>
