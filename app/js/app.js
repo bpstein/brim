@@ -1,1 +1,1 @@
-var brimApp = angular.module("brimApp", []);
+var brimApp = angular.module("brimApp", ["ngMap"]);
