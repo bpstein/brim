@@ -6,6 +6,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/factories/GetTagsFactory.js"></script>
     <title>Brim Photo Search</title>
   </head>
 
@@ -16,7 +17,7 @@
         <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
         <button id="searchTagsubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
         <p id="tag results" ng-repeat='tag in ctrl.tags'>
-        {{ tag }}</p>
+        {{ tag.name }}</p>
       </div>
     </div>
   </body>
