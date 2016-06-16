@@ -6,6 +6,14 @@ function AuthController($auth, $state) {
 
   var vm = this;
 
+  vm.authenticate = function(provider) {
+    $auth.authenticate(provider);
+  }
+
+  vm.isAuthenticated = function() {
+    return $auth.isAuthenticated();
+  }
+
   vm.login = function() {
 
     var credntials = {
