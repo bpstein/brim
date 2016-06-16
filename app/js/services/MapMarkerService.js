@@ -6,8 +6,8 @@ angular.module("brimApp")
   };
   GoogleOverlayView.prototype = new google.maps.OverlayView();
   GoogleOverlayView.prototype.draw = function() {
-    let panes = this.getPanes();
-    let point = this.getProjection().fromLatLngToDivPixel(this.latlng);
+    var panes = this.getPanes();
+    var point = this.getProjection().fromLatLngToDivPixel(this.latlng);
     panes.overlayImage.appendChild(this.element[0]);
     if (point) {
       this.element.css('left', point.x + 'px');
