@@ -27,10 +27,19 @@ describe("brimApp", function() {
   it('should allow you to search for hashtags', function(){
     browser.get('/')
     $('#searchTags').sendKeys('cat')
-    $('#searchTagsubmit').click()
-    var tags = $$('#tags p');
+    $('#searchTagSubmit').click()
+    var tags = $$('#tags span');
     expect(tags.first().getText()).toMatch('cat')
     expect(tags.last().getText()).toMatch('cat')
   })
+
+  // it('should allow you to search for an image by hashtag', function(){
+  //  browser.get('/')
+  //  $('#searchTags').sendKeys('cat')
+  //  $('#searchImageSubmit').click()
+  //  expect(element(by.id('recaptcha_image')).isPresent()).toBe(true);
+  //  mypic = element(by.css("img[src*='mypic.png']"));
+  //  expect(mypic).isPresent()).toBe(true);
+  // })
 
 });

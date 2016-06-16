@@ -14,12 +14,16 @@
     <div id='tags' ng-controller="brimAppController as ctrl">
 
         <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
-        <button id="searchTagsubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
+
+        <button id="searchTagSubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
+
+        <button id="searchImageSubmit" ng-click="ctrl.getImage(tagsearch)">Search Images</button>
         {{error}}
 
-      <p ng-repeat='tag in ctrl.tags'>
-        {{ tag.name }}
-      </p>
+      <span ng-repeat='tag in ctrl.tags'>
+        {{ tag.name }},
+      </span>
+
 
     </div>
   </body>
