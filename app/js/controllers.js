@@ -14,7 +14,8 @@ angular.module("brimApp")
 
     self.customIcon = {
       "scaledSize": [32,32],
-      "url": "https://cdn0.iconfinder.com/data/icons/weboo-2/512/pin.png"
+      "url": "https://cdn0.iconfinder.com/data/icons/weboo-2/512/pin.png",
+      "class": ".polaroids"
     }
     
     self.message = 'You can not hide. :)';
