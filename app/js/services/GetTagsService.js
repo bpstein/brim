@@ -1,7 +1,6 @@
 'use strict';
 
-brimApp.service('GetTagsService', ['$http',
-	function($http) {
+brimApp.service('GetTagsService', ['$http', function($http) {
 		var base = "https://api.instagram.com/v1";
 		var access_token = '&access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57';
 		return {
