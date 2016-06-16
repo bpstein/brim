@@ -13,6 +13,9 @@
   </head>
 
   <body>
+    <a ui-sref="login">Login</a>
+    <a ui-sref="maps">Maps</a>
+    <div ui-view></div>
     <div id='tags' ng-controller="brimAppController as ctrl">
 
         <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
