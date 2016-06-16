@@ -4,6 +4,7 @@ angular.module("brimApp")
     this.element = element;
     this.latlng = latlng;
   };
+  
   GoogleOverlayView.prototype = new google.maps.OverlayView();
   GoogleOverlayView.prototype.draw = function() {
     var panes = this.getPanes();
