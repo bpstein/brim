@@ -25,7 +25,7 @@
       <map-marker
         ng-repeat="location in locations"
         ng-class="{'active':location.isActive}"
-        ng-style="{'background-color':location.color}"
+        ng-style="{'background-image':'url(' + location.url + ')'}"
         ng-mouseenter="location.isActive=true"
         ng-mouseleave="location.isActive=false">
       </map-marker>
