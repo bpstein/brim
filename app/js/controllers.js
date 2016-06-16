@@ -1,6 +1,6 @@
 'use strict';
 
-brimApp.controller("brimAppController", ['$scope', 'GetTagsService',function($scope, GetTagsService) {
+brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesByTagService', function($scope, GetTagsService, GetImagesByTagService) {
 
     var self = this;
 
@@ -21,6 +21,13 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService',function($sc
 		GetTagsService.get(tagsearch).success(function(response) {
 			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
       self.tags = response.data;
-		});
-  }
+		  });
+    }
+
+    self.getImagesByTags = function(tag) {
+		GetImagesByTagService.get(tag).success(function(response) {
+			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+      self.images = response.data;
+		  });
+    }
 }]);
