@@ -1,4 +1,4 @@
-#map, figure {
+/*#map, figure {
   height: 400px;
 }
 
@@ -61,33 +61,7 @@
   display: block;
   z-index: 100;
 }
-
-
-/*img[src="https://www.gravatar.com/avatar/0a9745ea7ac5c90d7acadb02ab1020cd?s=32&d=identicon&r=PG&f=1"]{
-        border-radius:16px;
-        border:1px solid #000 !important;
-      }*/
-
-/*.polaroids {
-  background:#fff;display:inline;
-  float:left;margin:0 0 27px 30px;
-  width:auto;
-  padding:10px 10px 15px;
-  text-align:center;font-family:"Marker Felt",sans-serif;text-decoration:none;
-  color:#333;font-size:18px;
-  -webkit-box-shadow:0 3px 6px rgba(0,0,0,.25);
-  -moz-box-shadow:0 3px 6px rgba(0,0,0,.25);
-  -webkit-transform:rotate(-2deg);
-  -webkit-transition:-webkit-transform .15s linear;
-  -moz-transform:rotate(-2deg);
-}
-
-.polaroids img{
-  display:block;
-  width:190px;
-  margin-bottom:12px;
-}*/
-
+*/
 
 
 figure {
@@ -105,22 +79,41 @@ gmap {
 map-marker {
   width: 30px;
   height: 30px;
-  /*NOTE: margins must be half the size of the marker size.*/
-  /*This ensure that markers are placed at the correct location.*/
+  /*NOTE: margins must be half the size of the marker size. 
+  This ensures that markers are placed at the correct location, 
+  and that custom markers are overlaid in place of standard markers.*/
   margin-top: -15px;
   margin-left: -15px;
   position: absolute;
   display: block;
   cursor: pointer;
-  background-size: 100%;
-  transition: all .1s;
+  transition: all .3s;
+  border-bottom: 7px solid #fffaf0;
+  border-top: 2px solid #fffaf0;
+  border-left: 2px solid #fffaf0;
+  border-right: 2px solid #fffaf0;
 }
 map-marker.active {
-  width: 50px;
-  height: 50px;
-  margin-top: -25px;
-  margin-left: -25px;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
   background-size: 100%;
+  z-index: 5;
+  border-bottom: 40px solid #fffaf0;
+  border-top: 8px solid #fffaf0;
+  border-left: 8px solid #fffaf0;
+  border-right: 8px solid #fffaf0;
+}
+
+map-marker, map-marker.active {
+  background-size: 100%;
+  box-shadow: 4px 4px 4px #888888;
+}
+
+#username {
+  font-weight: bold;
+  margin-top: 155px;
 }
 
 ul {

@@ -28,6 +28,10 @@
         ng-style="{'background-image':'url(' + location.url + ')'}"
         ng-mouseenter="location.isActive=true"
         ng-mouseleave="location.isActive=false">
+        <div ng-mouseenter="options=true" ng-mouseleave="options=false">
+          <div id="username" ng-show="options">{{location.name}}</div>
+          <div id="caption" ng-show="options">{{location.caption}}</div>
+        </div>
       </map-marker>
     </figure>
 
