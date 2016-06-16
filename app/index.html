@@ -23,23 +23,24 @@
         {{error}}
 
       <span ng-repeat='tag in ctrl.tags'>
-        <span ng-click="ctrl.saveTag(tag.name)">{{ tag.name }}</span>
-        <span ng-click="ctrl.removeTag(tag.name)">X</span>
+        <span id="relatedTags" ng-click="ctrl.saveTag(tag.name)">{{ tag.name }}</span>
       </span>
 
       <br>
 
-      {{ctrl.chosenTags}}
+      <span ng-repeat='chosenTag in ctrl.chosenTags'>
+        <span id="chosenTags">{{ chosenTag }}  </span>
+        <span ng-click="ctrl.removeTag(chosenTag)">X</span>
+      </span>
 
       <button id='tagOr-button' ng-click="ctrl.searchMultipleTags('or')">Multiple Search</button>
-
+      <button id='tagAnd-button' ng-click="ctrl.searchMultipleTags('and')">And Search</button>
       <div id="images" ng-repeat='image in ctrl.images'>
         <img src="{{ image.images.thumbnail.url }}">
       </div>
 
-      <button id='tagAnd-button' ng-click="ctrl.searchMultipleTags('and')">And Search</button>
+
 
     </div>
   </body>
 </html>
-

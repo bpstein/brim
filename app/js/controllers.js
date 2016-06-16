@@ -19,23 +19,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
 
     self.chosenTags = [];
     self.images = [];
-
-    // self.searchMultipleTags = function(arg) {
-    //   if(arg === 'or') {
-    //     self.chosenTags.forEach(function(tag){
-    //       self.getImagesByTags(tag)
-    //     })
-    //   }
-    //   if(arg === 'and') {
-    //     self.images = []
-    //     GetImagesByTagService.get(self.chosenTags[0]).success(function(response) {
-    //     self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
-    //     response.data.filter(function(image){
-    //       return image.tags.includes(self.chosenTags.join('","'))
-    //     })
-    //   });
-    //   }
-    // };
+    self.tags = [];
 
 
     self.searchMultipleTags = function(arg) {

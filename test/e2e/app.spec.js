@@ -28,7 +28,7 @@ describe("brimApp", function() {
     browser.get('/')
     $('#searchTags').sendKeys('cat')
     $('#searchTagSubmit').click()
-    var tags = $$('#tags span');
+    var tags = $$('#relatedTags');
     expect(tags.first().getText()).toMatch('cat')
     expect(tags.last().getText()).toMatch('cat')
   })

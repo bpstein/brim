@@ -17,4 +17,3 @@ brimApp.service('GetImagesByTagService', ['$http', function($http) {
     };
   }
 ]);
-
