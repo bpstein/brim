@@ -1,6 +1,5 @@
 angular.module("brimApp")
 .factory('locationFactory', function() {
-  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
   const photoLocations = [{
     name: 'London Eye',
     color: 'darkblue',

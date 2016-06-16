@@ -103,22 +103,24 @@ gmap {
   height: 100%;
 }
 map-marker {
-  width: 10px;
-  height: 10px;
-  margin-top: -5px;
-  margin-left: -5px;
-  border-radius: 50%;
-  background-color: grey;
+  width: 20px;
+  height: 20px;
+  /*NOTE: margins must be half the size of the marker size.*/
+  /*This ensure that markers are placed at the correct location.*/
+  margin-top: -10px;
+  margin-left: -10px;
+/*  border-radius: 50%;
+*/  background-color: grey;
   position: absolute;
   display: block;
   cursor: pointer;
   transition: all .1s;
 }
 map-marker.active {
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
 }
 
 ul {
