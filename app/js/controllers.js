@@ -17,6 +17,27 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
       }
     };
 
+    self.chosenTags = [];
+    self.images = [];
+
+    self.searchMultipleTags = function() {
+      self.images = []
+      self.chosenTags.forEach(function(tag){
+        self.getImagesByTags(tag)
+      })
+    };
+
+    self.saveTag = function(tag) {
+      if(self.chosenTags.includes(tag) === false) {self.chosenTags.push(tag)};
+    };
+
+    self.removeTag = function(tag) {
+      if(self.chosenTags.includes(tag)){
+        var ind = self.chosenTags.indexOf(tag);
+        self.chosenTags.splice(ind, 1);
+      }
+    };
+
     self.getTags = function(tagsearch) {
 		GetTagsService.get(tagsearch).success(function(response) {
 			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
@@ -24,10 +45,21 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
 		  });
     }
 
+    self.getImagesByTag = function(tag) {
+      self.images = []
+  		GetImagesByTagService.get(tag).success(function(response) {
+  			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+        self.images = response.data;
+      });
+    }
+
     self.getImagesByTags = function(tag) {
-		GetImagesByTagService.get(tag).success(function(response) {
-			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
-      self.images = response.data;
-		  });
+      self.images = []
+      GetImagesByTagService.get(tag).success(function(response) {
+        self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+        response.data.forEach(function(object){
+            self.images.push(object)
+        })
+      });
     }
 }]);

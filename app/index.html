@@ -19,12 +19,20 @@
 
         <button id="searchTagSubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
 
-        <button id="searchImageSubmit" ng-click="ctrl.getImagesByTags(tagsearch)">Search Images</button>
+        <button id="searchImageSubmit" ng-click="ctrl.getImagesByTag(tagsearch)">Search Images</button>
         {{error}}
 
       <span ng-repeat='tag in ctrl.tags'>
-        {{ tag.name }},
+        <span ng-click="ctrl.saveTag(tag.name)">{{ tag.name }}</span>
+        <span ng-click="ctrl.removeTag(tag.name)">X</span>
       </span>
+
+      <br>
+
+      {{ctrl.chosenTags}}
+
+      <button id='tagOr-button' ng-click="ctrl.searchMultipleTags()">Multiple Search</button>
+
       <div id="images" ng-repeat='image in ctrl.images'>
         <img src="{{ image.images.thumbnail.url }}">
       </div>
@@ -32,3 +40,4 @@
     </div>
   </body>
 </html>
+
