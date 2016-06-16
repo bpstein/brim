@@ -4,10 +4,10 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService',function($sc
 
     var self = this;
 
-    $scope.test="testing scope"
-    var getResponseSuccess = function(scope, res, err) {
+    self.getResponseSuccess = function(scope, res, err) {
       if (res.meta.code !== 200) {
-        scope.error = res.meta.error_type + ' | ' + res.meta.error_message;
+        scope.error = res.meta.error_message;
+        // scope.error = res.meta.error_type + ' | ' + res.meta.error_message;
         return;
       }
       if (res.data.length > 0) {
@@ -19,7 +19,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService',function($sc
 
     self.getTags = function(tagsearch) {
 		GetTagsService.get(tagsearch).success(function(response) {
-			getResponseSuccess($scope, response, "This hashtag has returned no results" )
+			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
       self.tags = response.data;
 		});
   }
