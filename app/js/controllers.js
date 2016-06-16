@@ -20,11 +20,47 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
     self.chosenTags = [];
     self.images = [];
 
-    self.searchMultipleTags = function() {
-      self.images = []
-      self.chosenTags.forEach(function(tag){
-        self.getImagesByTags(tag)
-      })
+    // self.searchMultipleTags = function(arg) {
+    //   if(arg === 'or') {
+    //     self.chosenTags.forEach(function(tag){
+    //       self.getImagesByTags(tag)
+    //     })
+    //   }
+    //   if(arg === 'and') {
+    //     self.images = []
+    //     GetImagesByTagService.get(self.chosenTags[0]).success(function(response) {
+    //     self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+    //     response.data.filter(function(image){
+    //       return image.tags.includes(self.chosenTags.join('","'))
+    //     })
+    //   });
+    //   }
+    // };
+
+
+    self.searchMultipleTags = function(arg) {
+      if(arg === 'or') {
+        self.chosenTags.forEach(function(tag){
+          self.getImagesByTags(tag)
+        })
+      }
+      if(arg === 'and') {
+        self.images = []
+        GetImagesByTagService.get(self.chosenTags[0]).success(function(response) {
+        self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+        response.data.forEach(function(image){
+          var tagctr = 0;
+          self.chosenTags.forEach(function(tag) {
+            if(image.tags.includes(tag)){
+              tagctr++;
+            }
+          })
+          if(tagctr === self.chosenTags.length) {
+            self.images.push(image)
+          }
+        })
+      });
+      }
     };
 
     self.saveTag = function(tag) {
@@ -58,7 +94,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
       GetImagesByTagService.get(tag).success(function(response) {
         self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
         response.data.forEach(function(object){
-            self.images.push(object)
+          self.images.push(object)
         })
       });
     }

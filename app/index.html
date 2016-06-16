@@ -31,11 +31,13 @@
 
       {{ctrl.chosenTags}}
 
-      <button id='tagOr-button' ng-click="ctrl.searchMultipleTags()">Multiple Search</button>
+      <button id='tagOr-button' ng-click="ctrl.searchMultipleTags('or')">Multiple Search</button>
 
       <div id="images" ng-repeat='image in ctrl.images'>
         <img src="{{ image.images.thumbnail.url }}">
       </div>
+
+      <button id='tagAnd-button' ng-click="ctrl.searchMultipleTags('and')">And Search</button>
 
     </div>
   </body>
