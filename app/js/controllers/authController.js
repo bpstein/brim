@@ -9,14 +9,14 @@ function AuthController($auth, $state) {
   vm.login = function() {
 
     var credntials = {
-      email: vm.email,
+      email: vm.username,
       password: vm.password
     }
 
     // Use Satellizer's $auth service to login
     $auth.login(credntials).then(function(data) {
       // If login is successful, redirect to the users state
-      $state.go('users', {});
+      $state.go('dashboard', {});
     });
   }
 };

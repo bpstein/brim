@@ -1,0 +1,11 @@
+<div id='tags' ng-controller="brimAppController as ctrl">
+
+  <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
+  <button id="searchTagsubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
+  {{error}}
+
+  <p ng-repeat='tag in ctrl.tags'>
+  {{ tag.name }}
+  </p>
+
+</div>

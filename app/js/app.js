@@ -2,7 +2,7 @@
 
 var brimApp = angular.module("brimApp", ['ui.router', 'satellizer']);
 
-angular.config(function($stateProvider, $urlRouterProvider, $authProvider) {
+brimApp.config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
   // Sattelizer config specifying which API
   // router JWT should be retrieved from
@@ -15,12 +15,12 @@ angular.config(function($stateProvider, $urlRouterProvider, $authProvider) {
   $stateProvider
     .state('auth', {
       url: '/auth',
-      templateUrl: '../views/authView.html',
+      templateUrl: '../templates/login.tpl.html',
       controller: 'AuthController as auth'
     })
-    .state('users', {
-      url: '/users',
-      templateUrl: '../views/users/userView.html',
-      controller: 'UserController as user'
+    .state('dashboard', {
+      url: 'dashboard',
+      templateUrl: '../templates/dashboard.tpl.html',
+      controller: 'DashboardController as dashboard'
     });
 });
