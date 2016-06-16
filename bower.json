@@ -18,6 +18,6 @@
     "angular-loader": "~1.5.0",
     "angular-mocks": "^1.5.5", 
     "html5-boilerplate": "^5.3.0",
-    "ngmap"
+    "ngmap": "^1.x"
   }
 }

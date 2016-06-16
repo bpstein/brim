@@ -9,3 +9,64 @@
 #photo-list {
   height: 150px;
 }
+.custom-marker {
+  font-size: 2em;
+  padding: 10px;
+  background: #fff;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: #7F7F7F solid 1px;
+  text-align: center;
+}
+
+.custom-marker:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 6px 0;
+  border-color: #fff transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  margin-left: -6px;
+  bottom: -6px;
+  left: 50%;
+}
+
+.custom-marker:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 6px 0;
+  border-color: #7F7F7F transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+  margin-left: -6px;
+  bottom: -7px;
+  left: 50%;
+}
+img[src="https://www.gravatar.com/avatar/0a9745ea7ac5c90d7acadb02ab1020cd?s=32&d=identicon&r=PG&f=1"]{
+        border-radius:16px;
+        border:1px solid #000 !important;
+      }
+
+.polaroids {
+  background:#fff;display:inline;
+  float:left;margin:0 0 27px 30px;
+  width:auto;
+  padding:10px 10px 15px;
+  text-align:center;font-family:"Marker Felt",sans-serif;text-decoration:none;
+  color:#333;font-size:18px;
+  -webkit-box-shadow:0 3px 6px rgba(0,0,0,.25);
+  -moz-box-shadow:0 3px 6px rgba(0,0,0,.25);
+  -webkit-transform:rotate(-2deg);
+  -webkit-transition:-webkit-transform .15s linear;
+  -moz-transform:rotate(-2deg);
+}
+.polaroids img{
+  display:block;
+  width:190px;
+  margin-bottom:12px;
+}

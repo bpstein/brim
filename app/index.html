@@ -22,7 +22,12 @@
               center="current-position"
               geo-fallback-center="[51.507362, -0.121889]" 
               geo-callback="ctrl.callbackFunc('you')"
-              zoom="16">
+              zoom="16"
+              on-center-changed="centerCustomMarker()">
+      <marker icon="{{ctrl.customIcon}}" position="current-position" ></marker>
+      <div ng-repeat="pointer in ctrl.pointers">
+        <marker class="polaroids" optimized="false" icon="{{ctrl.customIcon}}" position="{{pointer.latitude}}, {{pointer.longitude}}" ></marker>
+      </div>
       </ng-map>
     </div>
     <div id="photo-list">
