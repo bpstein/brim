@@ -1,4 +1,4 @@
 angular.module("brimApp")
-.controller('LocationsCtrl', function($scope, testService){
-  $scope.locations = testService.info
+.controller('LocationsCtrl', function($scope, infoTransferService){
+  $scope.locations = infoTransferService.info
 })

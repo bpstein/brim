@@ -1,6 +1,6 @@
 'use strict';
 
-brimApp.controller("InstagramController", ['testService', '$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', 'locationFactory', function(testService, $scope, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
+brimApp.controller("InstagramController", ['infoTransferService', '$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', 'locationFactory', function(infoTransferService, $scope, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
 
     var self = this;
 
@@ -66,13 +66,13 @@ brimApp.controller("InstagramController", ['testService', '$scope', 'GetTagsServ
     }
 
     self.getImagesByTag = function(tag) {
-      self.images = []
-      // testService.resetInfo()
+      self.images = [];
+      infoTransferService.resetInfo();
       GetImagesByTagService.get(tag).then(function(response) {
         self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
         self.images = response.data;
         response.data.forEach(function(item){
-          testService.addInfo(new locationFactory(item.caption.from.username, item.caption.text, item.location.latitude, item.location.longitude, item.images.thumbnail.url))
+          infoTransferService.addInfo(new locationFactory(item.caption.from.username, item.caption.text, item.location.latitude, item.location.longitude, item.images.thumbnail.url))
         })
       });
     }
