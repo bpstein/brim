@@ -59,7 +59,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
     };
 
     self.getTags = function(tagsearch) {
-		GetTagsService.get(tagsearch).success(function(response) {
+		GetTagsService.get(tagsearch).then(function(response) {
 			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
       self.tags = response.data;
 		  });
@@ -67,7 +67,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
 
     self.getImagesByTag = function(tag) {
       self.images = []
-  		GetImagesByTagService.get(tag).success(function(response) {
+  		GetImagesByTagService.get(tag).then(function(response) {
   			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
         self.images = response.data;
       });
@@ -75,7 +75,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
 
     self.getImagesByTags = function(tag) {
       self.images = []
-      GetImagesByTagService.get(tag).success(function(response) {
+      GetImagesByTagService.get(tag).then(function(response) {
         self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
         response.data.forEach(function(object){
           self.images.push(object)
