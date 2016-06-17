@@ -1,5 +1,13 @@
 ### Authentication with JWT [Ruby] and Satellizer [AngularJS]
 
+Usage
+----
+Run
+`npm start`
+
+
+
+### Methodology
 Satellizer
 ----
 Installation

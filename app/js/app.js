@@ -7,6 +7,8 @@ brimApp.config(function($stateProvider, $urlRouterProvider, $authProvider) {
   // Sattelizer config specifying which API
   // router JWT should be retrieved from
   $authProvider.loginUrl = '/api/authenticate';
+  $authProvider.baseUrl = 'http://localhost:3000/'
+  $authProvider.signupUrl = ''
   $authProvider.instagram({
     clientId: '35866d92eca64c689c7404d08aead995'
   });
