@@ -2,15 +2,19 @@
 
 var brimApp = angular.module("brimApp", ['ui.router', 'satellizer']);
 
-brimApp.config(function($stateProvider, $urlRouterProvider, $authProvider) {
+brimApp.config(function($stateProvider, 
+                        $urlRouterProvider, 
+                        $authProvider, 
+                        $locationProvider) 
+{
+
+  $locationProvider.html5Mode(true);
 
   // Sattelizer config specifying which API
   // router JWT should be retrieved from
-  $authProvider.loginUrl = '/api/authenticate';
-  $authProvider.baseUrl = 'http://localhost:3000/'
-  $authProvider.signupUrl = ''
+  // $authProvider.loginUrl = '/api/authenticate';
   $authProvider.instagram({
-    clientId: '35866d92eca64c689c7404d08aead995'
+    clientId: '94604331f352484ebaec0996c28ebc07'
   });
 
   // Redirect to the auth state if any other state
@@ -27,5 +31,10 @@ brimApp.config(function($stateProvider, $urlRouterProvider, $authProvider) {
       url: 'dashboard',
       templateUrl: '../templates/dashboard.tpl.html',
       controller: 'DashboardController as dashboard'
-    });
+    })
+    .state('login', {
+      url: '/auth/instagram',
+      templateUrl: '../tempaltes/dashboard.tpl.html',
+      controller: 'DashboardController as dashboard'
+    })
 });
