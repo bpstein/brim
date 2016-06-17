@@ -21,7 +21,7 @@
 
   <body>
     <figure ng-controller="MapCtrl">
-      <gmap center="current-location" zoom="15"></gmap>
+      <gmap id="map" center="current-location" zoom="15"></gmap>
       <map-marker
         ng-repeat="location in locations"
         ng-class="{'active':location.isActive}"
@@ -36,7 +36,8 @@
     </figure>
 
     <ul ng-controller="LocationsCtrl">
-      <li ng-repeat="location in locations"
+      <li id="photo-list"
+        ng-repeat="location in locations"
         ng-mouseenter="location.isActive=true"
         ng-mouseleave="location.isActive=false">
         {{location.name}}
