@@ -1,6 +1,6 @@
 'use strict';
 
-brimApp.service('infoTransferService', ['$http', function($http) {
+brimApp.service('infoTransferService', function() {
 
   self = this
 
@@ -14,4 +14,4 @@ brimApp.service('infoTransferService', ['$http', function($http) {
     self.info.length = 0
   }
 
-}]);
+});
