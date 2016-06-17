@@ -1,6 +1,6 @@
 angular.module("brimApp")
 .factory('locationFactory', function() {
-  const photoLocations = [{
+  var photoLocations = [{
     name: 'London Eye',
     caption: 'so many tourists',
     lat: 51.5033,

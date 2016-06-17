@@ -21,7 +21,7 @@
 
   <body>
     <figure ng-controller="MapCtrl">
-      <gmap></gmap>
+      <gmap center="current-location" zoom="15"></gmap>
       <map-marker
         ng-repeat="location in locations"
         ng-class="{'active':location.isActive}"
