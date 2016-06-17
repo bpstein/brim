@@ -20,7 +20,6 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
     self.chosenTags = [];
     self.images = [];
     self.tags = [];
-    self.imageLoc = []
 
 
     self.searchMultipleTags = function(arg) {
@@ -85,20 +84,33 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
     }
 
     self.getImageByLocation = function() {
+      self.images = []
       GetImageByLocationService.get().then(function(response){
         response.data.forEach(function(object) {
-          self.imageLoc.push(object)
+          self.images.push(object)
         })
       });
     };
 
     self.searchTagsWithLocation = function(arg) {
-      var locImgs = self.getImageByLocation();
-      var tagImgs = self.searchMultipleTags(arg);
-
-    };
-
+      self.images = []
+      GetImageByLocationService.get().then(function(response){
+        response.data.forEach(function(image){
+          var tagctr = 0;
+          self.chosenTags.forEach(function(tag){
+            if(image.tags.includes(tag)){
+              if(arg === 'and'){
+                tagctr++;
+              }
+              else {
+                if(self.images.includes(image)===false){self.images.push(image)}
+              }
+            }
+          })
+          if(tagctr === self.chosenTags.length) {
+            self.images.push(image)
+          }
+        })
+      })
+    }
 }]);
-
-
-

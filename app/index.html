@@ -42,8 +42,8 @@
 
       <button ng-click="ctrl.getImageByLocation()">loc button</button>
       {{ctrl.imageLoc}}
-
-      <button ng-click="ctrl.searchTagsWithLocation()">tags and loc</button>
+      <button ng-click="ctrl.searchTagsWithLocation('or')">tags or loc</button>
+      <button ng-click="ctrl.searchTagsWithLocation('and')">tags and loc</button>
 
     </div>
   </body>

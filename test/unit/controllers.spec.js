@@ -11,6 +11,10 @@ describe("brimAppController", function() {
   }
   var response2 = {
     meta: {code: 200},
+    data: [{name: 'cat'}, {name: 'catamaran'}, {name: 'catnip'}]
+  }
+  var response3 = {
+    meta: {code: 200},
     data: ''
   }
 
@@ -33,31 +37,31 @@ describe("brimAppController", function() {
     })
 
     it("returns an error if the search tag returns no results from the server", function() {
-      ctrl.getResponseSuccess(scope, response2, "This hashtag has returned no results");
+      ctrl.getResponseSuccess(scope, response3, "This hashtag has returned no results");
       expect(scope.error).toEqual("This hashtag has returned no results");
     })
   })
 
-  // describe ('getTags', function () {
-  //   it('gets all tags associated with a given tag', function() {
-  //     httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/search?q=cat&access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(data);
-  //     spyOn(ctrl,'getResponseSuccess').and.returnValue();
-  //     ctrl.getTags('cat');
-  //     httpBackend.flush();
-  //     expect(ctrl.tags).toEqual(data);
-  //   })
-  // })
-  //
-  // describe ('getImagesByTag(s)', function () {
-  //   beforeEach(function(){
-  //     httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/cat/media/recent?access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(data);
-  //     spyOn(ctrl,'getResponseSuccess').and.returnValue();
-  //   });
-  //
-  //   it('gets all images associated with a given tag', function() {
-  //     ctrl.getImagesByTag('cat');
-  //     httpBackend.flush();
-  //     expect(ctrl.images).toEqual(data);
-  //   });
-  // });
+  describe ('getTags', function () {
+    it('gets all tags associated with a given tag', function() {
+      httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/search?q=cat&access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(response2);
+      spyOn(ctrl,'getResponseSuccess').and.returnValue();
+      ctrl.getTags('cat');
+      httpBackend.flush();
+      expect(ctrl.tags).toEqual(data);
+    })
+  })
+
+  describe ('getImagesByTag(s)', function () {
+    beforeEach(function(){
+      httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/cat/media/recent?access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(response2);
+      spyOn(ctrl,'getResponseSuccess').and.returnValue();
+    });
+
+    it('gets all images associated with a given tag', function() {
+      ctrl.getImagesByTag('cat');
+      httpBackend.flush();
+      expect(ctrl.images).toEqual(data);
+    });
+  });
 });
