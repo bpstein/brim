@@ -12,9 +12,10 @@ brimApp.service('GetImagesByTagService', ['$http', function($http) {
             'callback': 'JSON_CALLBACK'
           }
         };
-        return $http.jsonp(url, config);
+        return $http.jsonp(url, config).then(function(response){
+					return response.data;
+				});
       }
     };
   }
 ]);
-

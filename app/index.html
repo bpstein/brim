@@ -8,6 +8,7 @@
     <script src="js/controllers.js"></script>
     <script src="js/services/GetTagsService.js"></script>
     <script src="js/services/GetImagesByTagService.js"></script>
+    <script src="js/services/GetImageByLocationService.js"></script>
 
     <title>Brim Photo Search</title>
   </head>
@@ -19,15 +20,30 @@
 
         <button id="searchTagSubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
 
-        <button id="searchImageSubmit" ng-click="ctrl.getImagesByTags(tagsearch)">Search Images</button>
+        <button id="searchImageSubmit" ng-click="ctrl.getImagesByTag(tagsearch)">Search Images</button>
         {{error}}
 
       <span ng-repeat='tag in ctrl.tags'>
-        {{ tag.name }},
+        <span id="relatedTags" ng-click="ctrl.saveTag(tag.name)">{{ tag.name }}</span>
       </span>
+
+      <br>
+
+      <span ng-repeat='chosenTag in ctrl.chosenTags'>
+        <span id="chosenTags">{{ chosenTag }}  </span>
+        <span ng-click="ctrl.removeTag(chosenTag)">X</span>
+      </span>
+
+      <button id='tagOr-button' ng-click="ctrl.searchMultipleTags('or')">Multiple Search</button>
+      <button id='tagAnd-button' ng-click="ctrl.searchMultipleTags('and')">And Search</button>
       <div id="images" ng-repeat='image in ctrl.images'>
         <img src="{{ image.images.thumbnail.url }}">
       </div>
+
+      <button ng-click="ctrl.getImageByLocation()">loc button</button>
+      {{ctrl.imageLoc}}
+      <button ng-click="ctrl.searchTagsWithLocation('or')">tags or loc</button>
+      <button ng-click="ctrl.searchTagsWithLocation('and')">tags and loc</button>
 
     </div>
   </body>

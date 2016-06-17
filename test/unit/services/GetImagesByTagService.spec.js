@@ -16,7 +16,7 @@ describe('GetImagesByTagService', function(){
     httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/cat/media/recent?access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK'
   ).respond(data);
     service.get('cat').then(function(response){
-      expect(response.data).toEqual(data)
+      expect(response).toEqual(data)
     });
     httpBackend.flush();
   });
