@@ -8,6 +8,7 @@
     <script src="js/controllers.js"></script>
     <script src="js/services/GetTagsService.js"></script>
     <script src="js/services/GetImagesByTagService.js"></script>
+    <script src="js/services/GetImageByLocationService.js"></script>
 
     <title>Brim Photo Search</title>
   </head>
@@ -39,7 +40,10 @@
         <img src="{{ image.images.thumbnail.url }}">
       </div>
 
+      <button ng-click="ctrl.getImageByLocation()">loc button</button>
+      {{ctrl.imageLoc}}
 
+      <button ng-click="ctrl.searchTagsWithLocation()">tags and loc</button>
 
     </div>
   </body>

@@ -1,6 +1,6 @@
 'use strict';
 
-brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesByTagService', function($scope, GetTagsService, GetImagesByTagService) {
+brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', function($scope, GetTagsService, GetImagesByTagService, GetImageByLocationService) {
 
     var self = this;
 
@@ -20,6 +20,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
     self.chosenTags = [];
     self.images = [];
     self.tags = [];
+    self.imageLoc = []
 
 
     self.searchMultipleTags = function(arg) {
@@ -82,4 +83,22 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
         })
       });
     }
+
+    self.getImageByLocation = function() {
+      GetImageByLocationService.get().then(function(response){
+        response.data.forEach(function(object) {
+          self.imageLoc.push(object)
+        })
+      });
+    };
+
+    self.searchTagsWithLocation = function(arg) {
+      var locImgs = self.getImageByLocation();
+      var tagImgs = self.searchMultipleTags(arg);
+
+    };
+
 }]);
+
+
+
