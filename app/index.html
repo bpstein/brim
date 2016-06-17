@@ -15,8 +15,9 @@
     <script src="js/services/MapMarkerService.js"></script>
     <script src="js/services/LocationFactory.js"></script>
     <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="js/controllers/InstagramController.js"></script>
     <script src="js/services/GetTagsService.js"></script>
+    <script src="js/services/testService.js"></script>
     <script src="js/services/GetImagesByTagService.js"></script>
     <script src="js/services/GetImageByLocationService.js"></script>
     <title>Brim Photo Search</title>
@@ -39,14 +40,14 @@
     </figure>
 
     <ul ng-controller="LocationsCtrl">
-      <li id="photo-list"
-        ng-repeat="location in locations"
-        ng-mouseenter="location.isActive=true"
-        ng-mouseleave="location.isActive=false">
+      <li id="photo-list" ng-repeat="location in locations">
         {{location.name}}
       </li>
     </ul>
-    <div id='tags' ng-controller="brimAppController as ctrl">
+
+    <div id='tags' ng-controller="InstagramController as ctrl">
+
+
 
         <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
 

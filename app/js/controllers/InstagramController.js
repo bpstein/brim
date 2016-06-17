@@ -1,6 +1,6 @@
 'use strict';
 
-brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', function($scope, GetTagsService, GetImagesByTagService, GetImageByLocationService) {
+brimApp.controller("InstagramController", ['testService', '$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', 'locationFactory', function(testService, $scope, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
 
     var self = this;
 
@@ -59,17 +59,21 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
     };
 
     self.getTags = function(tagsearch) {
-		GetTagsService.get(tagsearch).then(function(response) {
-			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+    GetTagsService.get(tagsearch).then(function(response) {
+      self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
       self.tags = response.data;
-		  });
+      });
     }
 
     self.getImagesByTag = function(tag) {
       self.images = []
-  		GetImagesByTagService.get(tag).then(function(response) {
-  			self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+      // testService.resetInfo()
+      GetImagesByTagService.get(tag).then(function(response) {
+        self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
         self.images = response.data;
+        response.data.forEach(function(item){
+          testService.addInfo(new locationFactory(item.caption.from.username, item.caption.text, item.location.latitude, item.location.longitude, item.images.thumbnail.url))
+        })
       });
     }
 
