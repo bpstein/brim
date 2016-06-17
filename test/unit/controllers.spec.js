@@ -38,26 +38,26 @@ describe("brimAppController", function() {
     })
   })
 
-  describe ('getTags', function () {
-    it('gets all tags associated with a given tag', function() {
-      httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/search?q=cat&access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(data);
-      spyOn(ctrl,'getResponseSuccess').and.returnValue();
-      ctrl.getTags('cat');
-      httpBackend.flush();
-      expect(ctrl.tags).toEqual(data);
-    })
-  })
-
-  describe ('getImagesByTag(s)', function () {
-    beforeEach(function(){
-      httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/cat/media/recent?access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(data);
-      spyOn(ctrl,'getResponseSuccess').and.returnValue();
-    });
-
-    it('gets all images associated with a given tag', function() {
-      ctrl.getImagesByTag('cat');
-      httpBackend.flush();
-      expect(ctrl.images).toEqual(data);
-    });
-  });
+  // describe ('getTags', function () {
+  //   it('gets all tags associated with a given tag', function() {
+  //     httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/search?q=cat&access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(data);
+  //     spyOn(ctrl,'getResponseSuccess').and.returnValue();
+  //     ctrl.getTags('cat');
+  //     httpBackend.flush();
+  //     expect(ctrl.tags).toEqual(data);
+  //   })
+  // })
+  //
+  // describe ('getImagesByTag(s)', function () {
+  //   beforeEach(function(){
+  //     httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/cat/media/recent?access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(data);
+  //     spyOn(ctrl,'getResponseSuccess').and.returnValue();
+  //   });
+  //
+  //   it('gets all images associated with a given tag', function() {
+  //     ctrl.getImagesByTag('cat');
+  //     httpBackend.flush();
+  //     expect(ctrl.images).toEqual(data);
+  //   });
+  // });
 });

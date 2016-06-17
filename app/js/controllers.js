@@ -30,7 +30,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
       }
       if(arg === 'and') {
         self.images = []
-        GetImagesByTagService.get(self.chosenTags[0]).success(function(response) {
+        GetImagesByTagService.get(self.chosenTags[0]).then(function(response) {
         self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
         response.data.forEach(function(image){
           var tagctr = 0;
@@ -77,7 +77,7 @@ brimApp.controller("brimAppController", ['$scope', 'GetTagsService','GetImagesBy
       self.images = []
       GetImagesByTagService.get(tag).then(function(response) {
         self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
-        response.data.forEach(function(object){
+        return response.data.forEach(function(object){
           self.images.push(object)
         })
       });
