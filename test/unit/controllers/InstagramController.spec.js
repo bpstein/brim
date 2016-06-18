@@ -1,4 +1,4 @@
-describe("brimAppController", function() {
+describe("InstagramController", function() {
 
   beforeEach(module("brimApp"));
 
@@ -18,11 +18,11 @@ describe("brimAppController", function() {
     data: ''
   }
 
-  beforeEach(inject(function($rootScope, $controller, GetTagsService, GetImagesByTagService, $httpBackend){
+  beforeEach(inject(function($rootScope, $controller, GetTagsService, GetImagesByTagService, $httpBackend, infoTransferService){
     scope = $rootScope.$new();
     tagservice = GetTagsService;
     imageservice = GetImagesByTagService;
-    ctrl = $controller('brimAppController', {
+    ctrl = $controller('InstagramController', {
         $scope: scope,
         GetTagsService: tagservice,
         GetImagesByTagService: imageservice

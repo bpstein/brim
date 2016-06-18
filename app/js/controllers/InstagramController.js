@@ -71,9 +71,7 @@ brimApp.controller("InstagramController", ['infoTransferService', '$scope', 'Get
       GetImagesByTagService.get(tag).then(function(response) {
         self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
         self.images = response.data;
-        response.data.forEach(function(item){
-          infoTransferService.addInfo(new locationFactory(item.caption.from.username, item.caption.text, item.location.latitude, item.location.longitude, item.images.thumbnail.url))
-        })
+        self.transferInfo(response.data)
       });
     }
 
@@ -117,4 +115,15 @@ brimApp.controller("InstagramController", ['infoTransferService', '$scope', 'Get
         })
       })
     }
+
+    self.transferInfo = function(data) {
+      data.forEach(function(item){
+        infoTransferService.addInfo(new locationFactory(item.caption.from.username,
+                                                        item.caption.text,
+                                                        item.location.latitude,
+                                                        item.location.longitude,
+                                                        item.images.thumbnail.url))
+      })
+    }
+
 }]);

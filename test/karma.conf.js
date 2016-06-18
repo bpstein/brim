@@ -6,8 +6,9 @@ module.exports = function(config){
     files: [
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/ngmap/build/scripts/ng-map.min.js',
       'app/js/**/*.js',
-      'test/unit/**/*.js'
+      'test/unit/**/*.js',
     ],
 
     autoWatch: true,
@@ -19,7 +20,7 @@ module.exports = function(config){
       type: 'lcov',
       dir: 'coverage/'
     },
-    
+
     plugins: [
       'karma-chrome-launcher',
       'karma-firefox-launcher',
