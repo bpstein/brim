@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Lato|Open+Sans|Roboto|Source+Sans+Pro" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <link href="/stylesheets/main.css" rel="stylesheet" type="text/css">
     <script src="bower_components/angular/angular.js"></script>
@@ -23,6 +24,14 @@
   </head>
 
   <body>
+    <div id="logo">
+      BRIM app
+    </div>
+    <form>
+      <fieldset id="search-block">
+        <input type="text" id="search-box" value="" placeholder="Enter a location" autocomplete="off">
+      </fieldset>
+    </form>
     <figure ng-controller="MapCtrl">
       <gmap id="map" center="current-location" zoom="15"></gmap>
       <map-marker
