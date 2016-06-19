@@ -1,10 +1,20 @@
-var brimApp = angular.module("brimApp", ["ngMap", "ngRoute", "ngMessages"])
+var brimApp = angular.module("brimApp", ["ngMap", "ngMessages", 'ui.router', 'satellizer'])
 
-.config(function($routeProvider, $stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, 
+                 $urlRouterProvider, 
+                 $authProvider) 
+{
+  $authProvider.loginUrl = 'http://localhost:3000/users/auth/instagram';
+  $authProvider.instagram({
+    clientId: '94604331f352484ebaec0996c28ebc07',
+    url: 'http://localhost:3000/users/auth/instagram'
+    // redirectUri: 'http://localhost:3000/users/auth/instagram/callback'
+  });
+
   $urlRouterProvider.otherwise("/home");
 
   $stateProvider
-    .state('home' {
+    .state('home', {
       url: "/",
       templateUrl: "../partials/home.html",
       controller: "HomeController"
