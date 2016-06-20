@@ -21,7 +21,8 @@
 
 #search-box {
   height: 70px;
-}
+/*  border: none;
+*/}
 
 fieldset {
   display: block;
