@@ -7,8 +7,8 @@ var brimApp = angular.module("brimApp", ["ngMap", "ngMessages", 'ui.router', 'sa
   // $authProvider.loginUrl = 'http://localhost:3000/users/auth/instagram';
   $authProvider.instagram({
     clientId: '94604331f352484ebaec0996c28ebc07',
-    url: 'http://localhost:3000/users/auth/instagram',
-    redirectUri: 'http://localhost:3000/users/auth/instagram/callback'
+    url: 'http://localhost:3000/api/instagram',
+    // redirectUri: 'http://localhost:3000/users/auth/instagram/callback'
   })
 
   $urlRouterProvider.otherwise("/home");
@@ -37,6 +37,5 @@ var brimApp = angular.module("brimApp", ["ngMap", "ngMessages", 'ui.router', 'sa
     controller: 'MapMarkerCtrl'
   };
 });
-
 
   

@@ -1,4 +1,4 @@
-brimApp.controller('AuthController', function($scope, $window, $location, $rootScope, $auth) {
+brimApp.controller('AuthController', function($scope, $window, $location, $rootScope, $auth, $http) {
   $scope.instagramLogin = function() {
     $auth.authenticate('instagram')
       .then(function(response) {
