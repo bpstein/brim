@@ -1,3 +1,5 @@
+'use strict';
+
 describe("brimApp", function() {
 
   let photos = element(by.css('#map')).$$('map-marker');
