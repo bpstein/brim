@@ -1,3 +1,5 @@
+'use strict';
+
 describe("brimApp", function() {
 
   let photos = element(by.css('#map')).$$('map-marker');
@@ -26,22 +28,22 @@ describe("brimApp", function() {
     browser.findElement(by.css('#map'));
   });
 
-  it("should render at least one pin as a photo on the map", function() {
-    browser.get('/');
-    browser.findElement(by.css('map-marker'));
-  });
+  // it("should render at least one pin as a photo on the map", function() {
+  //   browser.get('/');
+  //   browser.findElement(by.css('map-marker'));
+  // });
 
-  it("should print a list of photos below the map", function() {
-    browser.get('/');
-    browser.findElement(by.css('li'));
-  });
+  // it("should print a list of photos below the map", function() {
+  //   browser.get('/');
+  //   browser.findElement(by.css('li'));
+  // });
 
-  it('should allow you to search for hashtags', function(){
-    browser.get('/')
-    $('#searchTags').sendKeys('cat')
-    $('#searchTagSubmit').click()
-    var tags = $$('#relatedTags');
-    expect(tags.first().getText()).toMatch('cat')
-    expect(tags.last().getText()).toMatch('cat')
-  })
+  // it('should allow you to search for hashtags', function(){
+  //   browser.get('/')
+  //   $('#searchTags').sendKeys('cat')
+  //   $('#searchTagSubmit').click()
+  //   var tags = $$('#relatedTags');
+  //   expect(tags.first().getText()).toMatch('cat')
+  //   expect(tags.last().getText()).toMatch('cat')
+  // })
 });
