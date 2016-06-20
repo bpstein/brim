@@ -2,6 +2,7 @@ brimApp.controller('AuthController', function($scope, $window, $location, $rootS
   $scope.instagramLogin = function() {
     $auth.authenticate('instagram')
       .then(function(response) {
+        console.log(response);
         $window.localStorage.currentUser = JSON.stringify(response.data.user);
         $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
       })
@@ -24,5 +25,5 @@ brimApp.controller('AuthController', function($scope, $window, $location, $rootS
           });
       });
   };
-  
+
 });
