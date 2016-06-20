@@ -10,4 +10,5 @@ angular.module("brimApp")
   var gmap = new google.maps.Map(mapEl, mapOptions);
   $scope.gmap = gmap;
   $scope.locations = infoTransferService.info;
+
 })

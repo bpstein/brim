@@ -1,8 +1,12 @@
 'use strict';
 
-brimApp.controller("InstagramController", ['infoTransferService', '$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', 'locationFactory', function(infoTransferService, $scope, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
+brimApp.controller("InstagramController", ['GetGeocodeService', 'infoTransferService', '$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', 'locationFactory', function(GetGeocodeService, infoTransferService, $scope, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
 
     var self = this;
+
+    self.resetMapImages = function() {
+      infoTransferService.resetInfo();
+    }
 
     self.getResponseSuccess = function(scope, res, err) {
       if (res.meta.code !== 200) {
@@ -21,31 +25,15 @@ brimApp.controller("InstagramController", ['infoTransferService', '$scope', 'Get
     self.images = [];
     self.tags = [];
 
-
-    self.searchMultipleTags = function(arg) {
-      if(arg === 'or') {
-        self.chosenTags.forEach(function(tag){
-          self.getImagesByTags(tag)
-        })
-      }
-      if(arg === 'and') {
-        self.images = []
-        GetImagesByTagService.get(self.chosenTags[0]).then(function(response) {
-        self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
-        response.data.forEach(function(image){
-          var tagctr = 0;
-          self.chosenTags.forEach(function(tag) {
-            if(image.tags.includes(tag)){
-              tagctr++;
-            }
-          })
-          if(tagctr === self.chosenTags.length) {
-            self.images.push(image)
-          }
+    self.searchByLocation = function(address) {
+      self.addressList = []
+      GetGeocodeService.getGeocode(address).then(function(response) {
+        response.forEach(function(address) {
+          self.addressList.push(address)
         })
       });
-      }
     };
+
 
     self.saveTag = function(tag) {
       if(self.chosenTags.includes(tag) === false) {self.chosenTags.push(tag)};
@@ -77,21 +65,52 @@ brimApp.controller("InstagramController", ['infoTransferService', '$scope', 'Get
 
     self.getImagesByTags = function(tag) {
       self.images = []
+      infoTransferService.resetInfo()
       GetImagesByTagService.get(tag).then(function(response) {
         self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+        self.transferInfo(response.data)
         return response.data.forEach(function(object){
           self.images.push(object)
         })
       });
     }
 
-    self.getImageByLocation = function() {
+    self.getImageByLocation = function(lat, lng) {
       self.images = []
-      GetImageByLocationService.get().then(function(response){
-        response.data.forEach(function(object) {
-          self.images.push(object)
+      infoTransferService.resetInfo()
+      GetImageByLocationService.get(lat,lng).then(function(response){
+        self.transferInfo(response.data)
+        self.images = response.data
+        // response.data.forEach(function(object) {
+        //   self.images.push(object)
+        // })
+      });
+    };
+
+    self.searchMultipleTags = function(arg) {
+      if(arg === 'or') {
+        self.chosenTags.forEach(function(tag){
+          self.getImagesByTags(tag)
+        })
+      }
+      if(arg === 'and') {
+        self.images = []
+        GetImagesByTagService.get(self.chosenTags[0]).then(function(response) {
+        self.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+        response.data.forEach(function(image){
+          var tagctr = 0;
+          self.chosenTags.forEach(function(tag) {
+            if(image.tags.includes(tag)){
+              tagctr++;
+            }
+          })
+          if(tagctr === self.chosenTags.length) {
+            self.images.push(image)
+          }
         })
       });
+        self.transferInfo(self.images)
+      }
     };
 
     self.searchTagsWithLocation = function(arg) {

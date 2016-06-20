@@ -52,16 +52,16 @@ describe("InstagramController", function() {
     })
   })
 
-  describe ('getImagesByTag(s)', function () {
-    beforeEach(function(){
-      httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/cat/media/recent?access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(response2);
-      spyOn(ctrl,'getResponseSuccess').and.returnValue();
-    });
+  // describe ('getImagesByTag(s)', function () {
+  //   beforeEach(function(){
+  //     httpBackend.expect('JSONP','https://api.instagram.com/v1/tags/cat/media/recent?access_token=3414423759.9460433.24ba738c23824cbd82e82201dc10dc57&callback=JSON_CALLBACK').respond(response2);
+  //     spyOn(ctrl,'getResponseSuccess').and.returnValue();
+  //   });
 
-    it('gets all images associated with a given tag', function() {
-      ctrl.getImagesByTag('cat');
-      httpBackend.flush();
-      expect(ctrl.images).toEqual(data);
-    });
-  });
+  //   it('gets all images associated with a given tag', function() {
+  //     ctrl.getImagesByTag('cat');
+  //     httpBackend.flush();
+  //     expect(ctrl.images).toEqual(data);
+  //   });
+  // });
 });

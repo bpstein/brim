@@ -1,15 +1,15 @@
-describe('LocationController', function() {
+// describe('LocationController', function() {
 
-  beforeEach(module('brimApp'));
-  var ctrl, LocationFactory;
-  
-  beforeEach(inject(function($controller, LocationFactory){
-    ctrl = $controller('LocationController');
-  }));
+//   beforeEach(module('brimApp'));
+//   var ctrl, LocationFactory;
 
-  it('initializes with several locations', function() {
-    // var location1 = new LocationFactory("location1");
-    // var location2 = new LocationFactory("location2");
-  });
+//   beforeEach(inject(function($controller, locationFactory){
+//     ctrl = $controller('LocationController');
+//   }));
 
-});
+//   it('initializes with several locations', function() {
+//     // var location1 = new LocationFactory("location1");
+//     // var location2 = new LocationFactory("location2");
+//   });
+
+// });
