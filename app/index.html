@@ -3,11 +3,22 @@
 <html lang="en" ng-app="brimApp">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <link href="/stylesheets/main.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script src="vendors/porthole.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/controllers/authController.js"></script>
+    <script src="js/controllers/homeController.js"></script>
+    <script src="js/controllers/navbarController.js"></script>
     <script src="js/controllers/GeoLocationController.js"></script>
     <script src="js/controllers/MapController.js"></script>
     <script src="js/controllers/MarkerController.js"></script>
@@ -20,11 +31,26 @@
     <script src="js/services/infoTransferService.js"></script>
     <script src="js/services/GetImagesByTagService.js"></script>
     <script src="js/services/GetImageByLocationService.js"></script>
+    <script src="js/directives/serverError.js"></script>
     <script src="js/services/GetGeocodeService.js"></script>
     <title>Brim Photo Search</title>
   </head>
 
   <body>
+    <div class="navbar navbar-default navbar-static-top text-left">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <a href="/" class="navbar-brand"><i class="ion-images"></i> BrimApp</a>
+          <li><a ui-sref="home">Home</a></li>
+          <li><a ui-sref="about">About</a></li>
+          <li><a ui-sref="login">Login</a></li>
+          <li><a ui-sref="dashboard">Dashboard</a></li>
+          <li><a ng-click="logout()" href="">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <div ui-view></div>
+    <div id='tags' ng-controller="brimAppController as ctrl">
     <figure ng-controller="MapCtrl">
       <gmap id="map" center="current-location" zoom="15"></gmap>
       <map-marker
@@ -49,6 +75,7 @@
         {{location.name}}
       </li>
     </ul>
+>>>>>>> master
 
     <div id='tags' ng-controller="InstagramController as ctrl">
 

@@ -14,10 +14,11 @@
   ],
   "dependencies": {
     "angular": "^1.5.5",
-    "angular-route": "~1.5.0",
+    "angular-route": "^1.5.7",
     "angular-loader": "~1.5.0",
-    "angular-mocks": "^1.5.5", 
+    "angular-mocks": "^1.5.5",
     "html5-boilerplate": "^5.3.0",
-    "ngmap": "^1.x"
+    "ngmap": "^1.x",
+    "angular-messages": "^1.5.7"
   }
 }
