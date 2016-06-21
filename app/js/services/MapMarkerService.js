@@ -4,7 +4,7 @@ angular.module("brimApp")
     this.element = element;
     this.latlng = latlng;
   };
-  
+
   GoogleOverlayView.prototype = new google.maps.OverlayView();
   GoogleOverlayView.prototype.draw = function() {
     var panes = this.getPanes();
@@ -17,4 +17,11 @@ angular.module("brimApp")
   };
   GoogleOverlayView.prototype.onRemove = function() {};
   this.GoogleOverlayView = GoogleOverlayView;
+
+
+  this.clearMap = function() {
+    GoogleOverlayView.prototype.setMap(null)
+  }
+
+
 })
