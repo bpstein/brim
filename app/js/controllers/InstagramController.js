@@ -89,10 +89,10 @@ brimApp.controller("InstagramController", ['GetGeocodeService', 'infoTransferSer
 
     self.getImageByLocation = function(lat, lng) {
       self.images = []
-      // infoTransferService.resetInfo()
+      infoTransferService.resetInfo()
       GetImageByLocationService.get(lat,lng).then(function(response){
-        // self.transferInfo(response.data)
-        // self.images = response.data
+        self.transferInfo(response.data)
+        self.images = response.data
         response.forEach(function(object) {
           self.testdata.push(object)
         })
