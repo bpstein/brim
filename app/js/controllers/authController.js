@@ -1,4 +1,4 @@
-brimApp.controller('AuthController', function($http, $scope, $window, $location, $rootScope, $auth, $http) {
+brimApp.controller('AuthController', function($interval, $http, $scope, $window, $location, $rootScope, $auth, $http) {
   
   $scope.handlePopupAuthentication = function handlePopupAuthentication(network, account) {
     $scope.$apply(function() {
@@ -10,20 +10,30 @@ brimApp.controller('AuthController', function($http, $scope, $window, $location,
     var openUrl = 'http://localhost:3000/users/auth/' + network + '?client_id=' + "94604331f352484ebaec0996c28ebc07" + "&redirect_uri=" + "http://localhost:3000/users/auth/instagram/callback" + "&response_type=code";
     window.$windowScope = $scope;
     var windy = window.open(openUrl, 'Authenticate Account', "width=500, height=500");
+    // window.addEventListener('message', function(event) {
+    //   if (~event.origin.indexOf('http://localhost')) {
+    //     console.log(event.data);
+    //   } else {
+    //     return;
+    //   }
+    // });
+
+    $interval(function() {
+          console.log(windy.location.href);
+        }, 1000)
+
     (function() {
-        // var config = {
-        //   'params': {
-        //     'callback': 'JSON_CALLBACK'
-        //   }
-        // }
         return $http.get(openUrl).then(function(response){ 
           return response;
         });
-      })().then(function(response){
-        console.log(windy.body.innerHTML);
-        // console.log(response.data);
-        window.close();
+      })().then(function(response) {
+        // $interval.cancel(polling);
+        // windy.close();
     })
+  };
+
+  $scope.onMessage = function onMessage(messageEvent) {
+    return console.log(messageEvent.data);
   };
 
   // $scope.instagramLogin = function() {
