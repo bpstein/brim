@@ -64,6 +64,7 @@
           <div id="caption" ng-show="options">{{location.caption}}</div>
         </div>
       </map-marker>
+    <!--   <button ng-click='clear()'>reset</button> -->
     </figure>
 
    <!--  <div ng-controller="MapCtrl as ctrl">
@@ -79,6 +80,11 @@
 
     <div id='tags' ng-controller="InstagramController as ctrl">
 
+
+
+      <button ng-click='ctrl.tester("51.4036535","-0.3493859")'>tester</button>
+        {{ctrl.testdata}}
+
       <span ng-repeat='chosenTag in ctrl.chosenTags'>
         <span id="chosenTags">{{ chosenTag }}  </span>
         <span ng-click="ctrl.removeTag(chosenTag)">X</span>
@@ -89,6 +95,7 @@
       <span ng-repeat='tag in ctrl.tags'>
         <span id="relatedTags" ng-click="ctrl.saveTag(tag.name)">{{ tag.name }}</span>
       </span>
+
 
       <br><br>
 

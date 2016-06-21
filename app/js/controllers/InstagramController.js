@@ -24,6 +24,18 @@ brimApp.controller("InstagramController", ['GetGeocodeService', 'infoTransferSer
     self.chosenTags = [];
     self.images = [];
     self.tags = [];
+    self.testdata = [];
+
+
+    self.tester = function(lat,lng) {
+      GetImageByLocationService.get(lat,lng).then(function(response) {
+        return response
+      }).then(function(response){
+        response.forEach(function(array){
+          self.testdata.push(array)
+        })
+      });
+    }
 
     self.searchByLocation = function(address) {
       self.addressList = []
@@ -81,9 +93,9 @@ brimApp.controller("InstagramController", ['GetGeocodeService', 'infoTransferSer
       GetImageByLocationService.get(lat,lng).then(function(response){
         self.transferInfo(response.data)
         self.images = response.data
-        // response.data.forEach(function(object) {
-        //   self.images.push(object)
-        // })
+        response.forEach(function(object) {
+          self.testdata.push(object)
+        })
       });
     };
 
