@@ -1,5 +1,5 @@
 brimApp.controller('AuthController', function($http, $scope, $window, $location, $rootScope, $auth, $http) {
-  
+
   $scope.handlePopupAuthentication = function handlePopupAuthentication(network, account) {
     $scope.$apply(function() {
       $scope.applyNetwork(network, account);
@@ -9,20 +9,19 @@ brimApp.controller('AuthController', function($http, $scope, $window, $location,
   $scope.authNetwork = function authNetwork(network) {
     var openUrl = 'http://localhost:3000/users/auth/' + network + '?client_id=' + "94604331f352484ebaec0996c28ebc07" + "&redirect_uri=" + "http://localhost:3000/users/auth/instagram/callback" + "&response_type=code";
     window.$windowScope = $scope;
-    var windy = window.open(openUrl, 'Authenticate Account', "width=500, height=500");
+    var popupUrl
+    popupUrl = window.open(openUrl, 'Authenticate Account', "width=500, height=500");
     (function() {
-        // var config = {
-        //   'params': {
-        //     'callback': 'JSON_CALLBACK'
-        //   }
-        // }
-        return $http.get(openUrl).then(function(response){ 
-          return response;
+        return $http.get(openUrl).then(function(response){
+          return response
+
         });
       })().then(function(response){
-        console.log(windy.body.innerHTML);
-        // console.log(response.data);
-        window.close();
+        // console.log(response)
+        console.log(popupUrl.location.href)
+        // console.log(windy.body.innerHTML);
+        // console.log(popupUrl);
+        // window.close();
     })
   };
 
