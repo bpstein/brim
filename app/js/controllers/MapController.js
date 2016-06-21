@@ -1,5 +1,5 @@
 angular.module("brimApp")
-.controller('MapCtrl', function($rootScope, $scope, $element, locationFactory, NgMap, infoTransferService) {
+.controller('MapCtrl', function($rootScope, $scope, $element, locationFactory, NgMap, infoTransferService, mapMarkerService) {
   var mapEl = $element.find('gmap')[0];
   var mapOptions = {
     zoom: 13,
@@ -10,5 +10,10 @@ angular.module("brimApp")
   var gmap = new google.maps.Map(mapEl, mapOptions);
   $scope.gmap = gmap;
   $scope.locations = infoTransferService.info;
+
+
+  $scope.clear = function() {
+    mapMarkerService.clearMap()
+  }
 
 })
