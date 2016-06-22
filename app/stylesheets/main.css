@@ -1,30 +1,65 @@
 @import 'https://fonts.googleapis.com/css?family=Arimo|Lato|Open+Sans|Roboto|Source+Sans+Pro';
+
 #logo {
-  font-size: 36px;
+  font-size: 24px;
   font-family: "Helvetica Neue", HelveticaNeue, "Arimo", "Source Sans Pro", "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
+  padding-left: 15px;
 }
 
 #search-block {
-  height: 100px;
+  height: 110px;
   border: none;
   border-top: 1px solid #606469;
   border-bottom: 1px solid #606469;
   display: block;
   min-width: 90%;
   font-weight: 100;
-  font-size: 4.5em;
+  font-size: 4.2em;
   font-family: "Helvetica Neue", HelveticaNeue, "Arimo", "Source Sans Pro", "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
   border-color: #DCDCDC;
   margin: .1em 0;
   padding: .15em 0;
+  padding-left: 15px;
 }
 
-#search-box {
-  height: 70px;
+#button-block {
+  right: 60px;
+  display: block;
+  position: absolute;
+  margin-top: -95px;
 }
 
-#search-box:focus {
+.search-button {
+  color: #777;
+  background-color: #DCDCDC;
+}
+
+.search-button:hover {
+  color: #222;
+  background-color: #BBB;
+}
+
+#searchTags {
+  height: 65px;
+}
+
+#searchTags:focus, 
+#searchTagSubmit:focus, 
+#searchImageSubmit:focus,
+#searchLocationSubmit:focus{
   outline: none;
+}
+
+#searchTagSubmit, 
+#searchImageSubmit,
+#searchLocationSubmit{
+  border-radius: 50%;
+  height: 50px; width: 50px;
+  border: none;
+  font-size: 20px;
+  margin-top: -20px;
+  right: 0px;
+  display: inline;
 }
 
 fieldset {
@@ -41,13 +76,12 @@ input {
   border: none;
 }
 
-
 figure {
   top: 0;
   left: 0;
   margin: 0;
   width: 100%;
-  height: 85vh;
+  height: 50vh;
 }
 
 gmap {
@@ -97,7 +131,6 @@ map-marker, map-marker.active {
 
 ul {
   bottom: -15px;
-  left: 45%;
   padding: 1em;
   display: block;
   position: absolute; 
@@ -109,6 +142,11 @@ li {
   margin-bottom: .5em;
   cursor: pointer;
 }
+
 li:hover{
   color: #222;
+}
+
+#photo-list {
+
 }
