@@ -21,13 +21,10 @@
     <script src="js/controllers/navbarController.js"></script>
      <script src="js/controllers/DashboardController.js"></script>
     <script src="js/controllers/GeoLocationController.js"></script>
-    <script src="js/controllers/MapController.js"></script>
     <script src="js/controllers/MarkerController.js"></script>
-    <script src="js/controllers/LocationController.js"></script>
     <script src="js/services/MapMarkerService.js"></script>
     <script src="js/services/LocationFactory.js"></script>
     <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-    <script src="js/controllers/InstagramController.js"></script>
     <script src="js/services/GetTagsService.js"></script>
     <script src="js/services/infoTransferService.js"></script>
     <script src="js/services/GetImagesByTagService.js"></script>
@@ -51,68 +48,6 @@
       </div>
     </div>
     <div ui-view></div>
-
-
-
-    <div id='tags' ng-controller="InstagramController as ctrl">
-
-
-
-      <button ng-click='ctrl.tester("51.4036535","-0.3493859")'>tester</button>
-        {{ctrl.testdata}}
-
-      <span ng-repeat='chosenTag in ctrl.chosenTags'>
-        <span id="chosenTags">{{ chosenTag }}  </span>
-        <span ng-click="ctrl.removeTag(chosenTag)">X</span>
-      </span>
-
-      <br><br>
-
-      <span ng-repeat='tag in ctrl.tags'>
-        <span id="relatedTags" ng-click="ctrl.saveTag(tag.name)">{{ tag.name }}</span>
-      </span>
-
-
-      <br><br>
-
-      <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
-
-      <button id="searchTagSubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
-
-      <button id="searchImageSubmit" ng-click="ctrl.getImagesByTag(tagsearch)">Search Images</button>
-
-      {{error}}
-
-      <button id='tagOr-button' ng-click="ctrl.searchMultipleTags('or')">Search for images with tags</button>
-
-      <button id='tagAnd-button' ng-click="ctrl.searchMultipleTags('and')">Search for images with all tags</button>
-
-      <button ng-click="ctrl.getImageByLocation()">loc button</button>
-      <button ng-click="ctrl.searchTagsWithLocation('or')">tags or loc</button>
-      <button ng-click="ctrl.searchTagsWithLocation('and')">tags and loc</button><br>
-
-      <input id="searchLocation" type="text" ng-model="address" placeholder="Location/Postcode">
-      <button id="locationSubmit" ng-click="ctrl.searchByLocation(address)">Search Location</button>
-
-      <br>
-
-      <div ng-repeat='address in ctrl.addressList'>
-        <p ng-click="ctrl.getImageByLocation(address.geometry.location.lat,address.geometry.location.lng)">
-          {{address.formatted_address}}
-        </p>
-      </div>
-      <br>
-
-      <button ng-click="ctrl.resetMapImages()">Reset Map Images</button>
-
-
-      <br><br>
-
-      <div id="images" ng-repeat='image in ctrl.images'>
-        <img src="{{ image.images.thumbnail.url }}">
-      </div>
-
-    </div>
   </body>
 
 </html>

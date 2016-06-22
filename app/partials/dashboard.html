@@ -29,4 +29,63 @@
         {{location.name}}
       </li>
     </ul>
+
+    <div id='tags'>
+
+      <button ng-click='tester("51.4036535","-0.3493859")'>tester</button>
+        {{testdata}}
+
+      <span ng-repeat='chosenTag in chosenTags'>
+        <span id="chosenTags">{{ chosenTag }}  </span>
+        <span ng-click="removeTag(chosenTag)">X</span>
+      </span>
+
+      <br><br>
+
+      <span ng-repeat='tag in tags'>
+        <span id="relatedTags" ng-click="saveTag(tag.name)">{{ tag.name }}</span>
+      </span>
+
+
+      <br><br>
+
+      <div id="tagsearch">
+        <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
+        <button id="searchTagSubmit" ng-click="getTags(tagsearch)">Search Tags</button>
+      </div>
+
+        <button id="searchImageSubmit" ng-click="getImagesByTag(tagsearch)">Search Images</button>
+
+      {{error}}
+
+      <button id='tagOr-button' ng-click="searchMultipleTags('or')">Search for images with tags</button>
+
+      <button id='tagAnd-button' ng-click="searchMultipleTags('and')">Search for images with all tags</button>
+
+      <button ng-click="getImageByLocation()">loc button</button>
+      <button ng-click="searchTagsWithLocation('or')">tags or loc</button>
+      <button ng-click="searchTagsWithLocation('and')">tags and loc</button><br>
+
+      <input id="searchLocation" type="text" ng-model="address" placeholder="Location/Postcode">
+      <button id="locationSubmit" ng-click="searchByLocation(address)">Search Location</button>
+
+      <br>
+
+      <div ng-repeat='address in addressList'>
+        <p ng-click="getImageByLocation(address.geometry.location.lat,address.geometry.location.lng)">
+          {{address.formatted_address}}
+        </p>
+      </div>
+      <br>
+
+      <button ng-click="resetMapImages()">Reset Map Images</button>
+
+
+      <br><br>
+
+      <div id="images" ng-repeat='image in images'>
+        <img src="{{ image.images.thumbnail.url }}">
+      </div>
+
+    </div>
 </div>
