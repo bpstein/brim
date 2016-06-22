@@ -2,7 +2,7 @@ angular.module("brimApp")
 .controller('DashboardController', function($rootScope, $scope, $element, locationFactory, NgMap, mapMarkerService, GetGeocodeService, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
 
   $scope.locations = [];
-  $scope.searchParam = ['cat'];
+  $scope.searchParam = [''];
 
   // Map Controller & Location Controller
   var mapEl = $element.find('gmap')[0];

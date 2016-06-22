@@ -1,8 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Arimo|Lato|Open+Sans|Roboto|Source+Sans+Pro';
 
 body {
-  background-color: rgba(162, 205, 233, 0.53);
-}
+/*  background-color: rgba(162, 205, 233, 0.53);
+*/}
 
 .buffer {
   padding: 0 40px 0 40px;
@@ -70,6 +70,10 @@ body {
   margin-top: -20px;
   right: 0px;
   display: inline;
+}
+
+#relatedTags {
+  padding-left: 10px;
 }
 
 fieldset {
@@ -142,7 +146,8 @@ map-marker, map-marker.active {
   right: 40px;
   height: 60vh;
   width:200px;
-  border:1px solid #ccc;
+  border: 3px solid #ccc;
+  border-radius: 5%;
   overflow:auto;
   position: absolute;
   margin-right: 20px;
