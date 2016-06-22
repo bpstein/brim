@@ -1,15 +1,39 @@
 <div>
-  <p>Hello, this a secret page!</p>
+  <form>
+    <fieldset id="search-block" class="buffer">
+      <input type="text" ng-model="tagsearch" id="searchTags" class="buffer" value="" placeholder="Enter something to search" autocomplete="off">
 
-    <div id="tagsearch" class="buffer">
-      <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
-      <button id="searchTagSubmit" ng-click="getTags(tagsearch)">Search Tags</button>
-      <button id="searchImageSubmit" ng-click="getImagesByTag(tagsearch)">Search Images</button>
-    </div>
+      <div id="button-block" class="buffer">
+        <button class="search-button" id="searchTagSubmit" ng-click="getTags(tagsearch)" alt="search by hashtag" title="search by tag">
+          <i class="fa fa-hashtag" aria-hidden="true"></i>
+        </button>
 
-    {{error}}
+        <button class="search-button" id="searchImageSubmit" ng-click="getImagesByTag(tagsearch)" alt="search by image" title="search by image">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </button>
 
-    <figure>
+        <button class="search-button" id="searchLocationSubmit" alt="search by location" title="search by location">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </button>
+      </div>
+      
+    </fieldset>
+  </form>
+
+  {{error}}
+
+<!--           <span ng-repeat='chosenTag in chosenTags'>
+          <span id="chosenTags">{{ chosenTag }}  </span>
+          <span ng-click="removeTag(chosenTag)">X</span>
+        </span>
+
+        <br><br>
+
+        <span ng-repeat='tag in tags'>
+          <span id="relatedTags" ng-click="saveTag(tag.name)">{{ tag.name }}</span>
+        </span> -->
+
+    <figure class="buffer">
       <gmap id="map" center="current-location" zoom="15"></gmap>
       <map-marker
         ng-repeat="location in locations"
@@ -43,18 +67,6 @@
 
         <button ng-click='tester("51.4036535","-0.3493859")'>tester</button>
           {{testdata}}
-
-        <span ng-repeat='chosenTag in chosenTags'>
-          <span id="chosenTags">{{ chosenTag }}  </span>
-          <span ng-click="removeTag(chosenTag)">X</span>
-        </span>
-
-        <br><br>
-
-        <span ng-repeat='tag in tags'>
-          <span id="relatedTags" ng-click="saveTag(tag.name)">{{ tag.name }}</span>
-        </span>
-
 
         <br><br>
 
