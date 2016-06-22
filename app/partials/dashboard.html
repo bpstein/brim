@@ -16,22 +16,17 @@
           <i class="fa fa-map-marker" aria-hidden="true" ng-click="searchByLocation(searchParam)"></i>
         </button>
       </div>
-      
+
     </fieldset>
   </form>
 
   {{error}}
   <div class="buffer">Searching tags: {{searchParam}}</div>
 
-  <span ng-repeat='chosenTag in chosenTags'>
-    <span id="chosenTags">{{ chosenTag }}  </span>
-    <span ng-click="removeTag(chosenTag)">X</span>
-  </span>
-
   <br><br>
 
   <div id="tags-list">
-    <p id="relatedTags" ng-repeat='tag in tags' ng-click="saveTag(tag.name)">{{ tag.name }}</p>
+    <p id="relatedTags" ng-repeat='tag in tags' ng-click="saveTag(tag.name)">{{ tag.name }} ({{tag.media_count}})</p>
     <p id="relatedTags" ng-repeat='address in addressList' ng-click="">{{ address.formatted_address }}</p>
   </div>
 
@@ -65,7 +60,7 @@
         <button ng-click="searchTagsWithLocation('or')">tags or loc</button>
         <button ng-click="searchTagsWithLocation('and')">tags and loc</button><br>
 
-  
+
 
         <button ng-click="resetMapImages()">Reset Map Images</button>
 

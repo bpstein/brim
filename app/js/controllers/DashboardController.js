@@ -1,8 +1,15 @@
 angular.module("brimApp")
 .controller('DashboardController', function($rootScope, $scope, $element, locationFactory, NgMap, mapMarkerService, GetGeocodeService, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
 
+
+  $scope.chosenTags = [];
+  $scope.images = [];
+  $scope.tags = [];
+
+  $scope.testdata = [];
+
   $scope.locations = [];
-  $scope.searchParam = [''];
+  $scope.searchParam = [];
 
   // Map Controller & Location Controller
   var mapEl = $element.find('gmap')[0];
@@ -34,12 +41,6 @@ angular.module("brimApp")
     }
   };
 
-  $scope.chosenTags = [];
-  $scope.images = [];
-  $scope.tags = [];
-  $scope.testdata = [];
-
-
   $scope.tester = function(lat,lng) {
     GetImageByLocationService.get(lat,lng).then(function(response) {
       return response
@@ -50,33 +51,6 @@ angular.module("brimApp")
     });
   }
 
-  $scope.searchByLocation = function(address) {
-    $scope.addressList = []
-    GetGeocodeService.getGeocode(address).then(function(response) {
-      response.forEach(function(address) {
-        $scope.addressList.push(address)
-      })
-    });
-  };
-
-  $scope.saveTag = function(tag) {
-    if(Array.isArray($scope.searchParam)) {
-      $scope.searchParam.push(tag);
-    } 
-    else {
-      var array = $scope.searchParam.split(',');
-      array.push(tag);
-      $scope.searchParam = array; 
-    }
-  };
-
-  $scope.removeTag = function(tag) {
-    if($scope.chosenTags.includes(tag)){
-      var ind = $scope.chosenTags.indexOf(tag);
-      $scope.chosenTags.splice(ind, 1);
-    }
-  };
-
   $scope.getTags = function(tagsearch) {
     GetTagsService.get(tagsearch).then(function(response) {
       $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
@@ -84,39 +58,35 @@ angular.module("brimApp")
     });
   }
 
+  $scope.saveTag = function(tag) {
+    if(Array.isArray($scope.searchParam)) {
+      var array = $scope.searchParam
+      array.push(tag);
+      $scope.searchParam = array.join(",")
+    }
+    else {
+      var array = $scope.searchParam.split(',');
+      array.push(tag);
+      $scope.searchParam = array.join(',');
+    }
+    if($scope.searchParam[0]===','){$scope.searchParam=$scope.searchParam.slice(1,$scope.searchParam.length)}
+  };
+
+
+
   $scope.getImagesByTag = function(tag) {
     $scope.images = [];
     $scope.locations = [];
-    GetImagesByTagService.get(tag).then(function(response) {
-      $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
-      $scope.images = response.data;
-      $scope.transferInfo(response.data)
-    });
+    var tags = $scope.searchParam.split(",");
+    console.log(tags)
+    if(tags.length<2){
+      GetImagesByTagService.get(tag).then(function(response) {
+        $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+        $scope.images = response.data;
+        $scope.transferInfo(response.data)
+      });
+    }
   }
-
-  $scope.getImagesByTags = function(tag) {
-    $scope.images = []
-    $scope.locations = []
-    GetImagesByTagService.get(tag).then(function(response) {
-      $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
-      $scope.transferInfo(response.data)
-      return response.data.forEach(function(object){
-        $scope.images.push(object)
-      })
-    });
-  }
-
-  $scope.getImageByLocation = function(lat, lng) {
-    $scope.images = []
-    $scope.locations = []
-    GetImageByLocationService.get(lat,lng).then(function(response){
-      $scope.transferInfo(response.data)
-      $scope.images = response.data
-      response.forEach(function(object) {
-        $scope.testdata.push(object)
-      })
-    });
-  };
 
   $scope.searchMultipleTags = function(arg) {
     if(arg === 'or') {
@@ -142,6 +112,39 @@ angular.module("brimApp")
     });
       $scope.transferInfo($scope.images)
     }
+  };
+
+  $scope.searchByLocation = function(address) {
+    $scope.addressList = []
+    GetGeocodeService.getGeocode(address).then(function(response) {
+      response.forEach(function(address) {
+        $scope.addressList.push(address)
+      })
+    });
+  };
+
+  $scope.getImagesByTags = function(tag) {
+    // $scope.images = []
+    // $scope.locations = []
+    GetImagesByTagService.get(tag).then(function(response) {
+      $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+      $scope.transferInfo(response.data)
+      return response.data.forEach(function(object){
+        $scope.images.push(object)
+      })
+    });
+  }
+
+  $scope.getImageByLocation = function(lat, lng) {
+    $scope.images = []
+    $scope.locations = []
+    GetImageByLocationService.get(lat,lng).then(function(response){
+      $scope.transferInfo(response.data)
+      $scope.images = response.data
+      response.forEach(function(object) {
+        $scope.testdata.push(object)
+      })
+    });
   };
 
   $scope.searchTagsWithLocation = function(arg) {
@@ -176,11 +179,21 @@ angular.module("brimApp")
     })
   }
 
-  $scope.optionsSet = function(bool) {
-    if(bool === 'true') {$scope.options = 'true'};
-    if(bool === 'false') {$scope.options = 'false'};
-  }
+  // $scope.optionsSet = function(bool) {
+  //   if(bool === 'true') {$scope.options = 'true'};
+  //   if(bool === 'false') {$scope.options = 'false'};
+  // }
 
-  $scope.options = 'true';
+  // $scope.options = 'true';
+
+
+  // $scope.removeTag = function(tag) {
+  //   array = $scope.searchParam.split(',');
+  //   if(array.includes(tag)){
+  //     var ind = array.indexOf(tag);
+  //     array.splice(ind, 1);
+  //     $scope.searchParam = array.join(',');
+  //   }
+  // };
 
 });

@@ -53,14 +53,14 @@ body {
   width: 76%;
 }
 
-#searchTags:focus, 
-#searchTagSubmit:focus, 
+#searchTags:focus,
+#searchTagSubmit:focus,
 #searchImageSubmit:focus,
 #searchLocationSubmit:focus{
   outline: none;
 }
 
-#searchTagSubmit, 
+#searchTagSubmit,
 #searchImageSubmit,
 #searchLocationSubmit{
   border-radius: 50%;
@@ -106,8 +106,8 @@ gmap {
 map-marker {
   width: 30px;
   height: 30px;
-  /*NOTE: margins must be half the size of the marker size. 
-  This ensures that markers are placed at the correct location, 
+  /*NOTE: margins must be half the size of the marker size.
+  This ensures that markers are placed at the correct location,
   and that custom markers are overlaid in place of standard markers.*/
   margin-top: -15px;
   margin-left: -15px;
@@ -142,15 +142,15 @@ map-marker, map-marker.active {
 }
 
 #tags-list {
-  width: 15%;
+  /*width: 15%;*/
   right: 40px;
   height: 60vh;
-  width:200px;
+  width:240px;
   border: 3px solid #ccc;
   border-radius: 5%;
   overflow:auto;
   position: absolute;
-  margin-right: 20px;
+  /*margin-right: 5px;*/
 }
 
 #username {
@@ -162,7 +162,7 @@ ul {
   bottom: -15px;
   padding: 1em;
   display: block;
-  position: absolute; 
+  position: absolute;
 }
 
 li {
