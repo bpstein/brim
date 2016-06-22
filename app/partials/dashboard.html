@@ -1,7 +1,7 @@
 <div>
   <form>
     <fieldset id="search-block" class="buffer">
-      <input type="text" ng-model="searchParam" id="searchTags" class="buffer" value="" placeholder="Enter something to search" autocomplete="off">
+      <input type="text" ng-model="searchParam" id="searchTags" placeholder="Enter something to search" autocomplete="off">
 
       <div id="button-block" class="buffer">
         <button class="search-button" id="searchTagSubmit" ng-click="getTags(searchParam)" alt="search by hashtag" title="search by tag">
@@ -21,13 +21,14 @@
   </form>
 
   {{error}}
+  <div class="buffer">Searching tags: {{searchParam}}</div>
 
-<!--   <span ng-repeat='chosenTag in chosenTags'>
+  <span ng-repeat='chosenTag in chosenTags'>
     <span id="chosenTags">{{ chosenTag }}  </span>
     <span ng-click="removeTag(chosenTag)">X</span>
   </span>
 
-  <br><br> -->
+  <br><br>
 
   <div id="tags-list">
     <p id="relatedTags" ng-repeat='tag in tags' ng-click="saveTag(tag.name)">{{ tag.name }}</p>
@@ -40,29 +41,14 @@
         ng-repeat="location in locations"
         ng-class="{'active':location.isActive}"
         ng-style="{'background-image':'url(' + location.url + ')'}"
-        ng-mouseenter="location.isActive=true"
-        ng-mouseleave="location.isActive=false">
-        <div ng-mouseenter="options=true" ng-mouseleave="options=false">
-          <div id="username" ng-show="options">{{location.name}}</div>
-          <div id="caption" ng-show="options">{{location.caption}}</div>
-        </div>
+        ng-mouseenter="location.isActive=true; optionsSet('true')"
+        ng-mouseleave="location.isActive=false; optionsSet('false')">
+<!--         <div>
+          <span id="username" ng-show="options==='true'">{{location.name}}</span>
+          <span id="caption" ng-show="options==='true'">{{location.caption}}</span>
+        </div> -->
       </map-marker>
     </figure>
-
-      <ul>
-        <li id="photo-list"
-          ng-repeat="location in locations"
-          ng-mouseenter="location.isActive=true"
-          ng-mouseleave="location.isActive=false">
-          {{location.name}}
-        </li>
-      </ul>
-
-      <ul>
-        <li id="photo-list" ng-repeat="location in locations">
-          {{location.name}}
-        </li>
-      </ul>
 
       <div id='tags' class="buffer">
 
@@ -86,9 +72,22 @@
 
         <br><br>
 
-        <div id="images" ng-repeat='image in images'>
-          <img src="{{ image.images.thumbnail.url }}">
+        <div class="container-fluid text-center">
+          <div id="images" ng-repeat='image in images' class="col-sm-4">
+            <div class="image-list">
+              <img src="{{ image.images.low_resolution.url }}">
+              <div>{{image.user.username}}</div>
+              <div>{{image.caption.text}}</div>
+            </div>
+          </div>
         </div>
+
+
+
+
+
+
+
 
       </div>
 </div>

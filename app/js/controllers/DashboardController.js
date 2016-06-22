@@ -2,6 +2,7 @@ angular.module("brimApp")
 .controller('DashboardController', function($rootScope, $scope, $element, locationFactory, NgMap, mapMarkerService, GetGeocodeService, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
 
   $scope.locations = [];
+  $scope.searchParam = ['cat'];
 
   // Map Controller & Location Controller
   var mapEl = $element.find('gmap')[0];
@@ -58,9 +59,15 @@ angular.module("brimApp")
     });
   };
 
-
   $scope.saveTag = function(tag) {
-    if($scope.chosenTags.includes(tag) === false) {$scope.chosenTags.push(tag)};
+    if(Array.isArray($scope.searchParam)) {
+      $scope.searchParam.push(tag);
+    } 
+    else {
+      var array = $scope.searchParam.split(',');
+      array.push(tag);
+      $scope.searchParam = array; 
+    }
   };
 
   $scope.removeTag = function(tag) {
@@ -168,5 +175,12 @@ angular.module("brimApp")
                                                       item.images.thumbnail.url))
     })
   }
+
+  $scope.optionsSet = function(bool) {
+    if(bool === 'true') {$scope.options = 'true'};
+    if(bool === 'false') {$scope.options = 'false'};
+  }
+
+  $scope.options = 'true';
 
 });
