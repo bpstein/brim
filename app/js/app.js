@@ -27,7 +27,7 @@ var brimApp = angular.module("brimApp", ["ngMap", "ngMessages", 'ui.router', 'sa
     .state('dashboard', {
       url: "/dashboard",
       templateUrl: "../partials/dashboard.html",
-      controller: 'brimAppController as ctrl'
+      controller: 'DashboardController'
     });
 })
 

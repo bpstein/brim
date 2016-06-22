@@ -19,6 +19,7 @@
     <script src="js/controllers/authController.js"></script>
     <script src="js/controllers/homeController.js"></script>
     <script src="js/controllers/navbarController.js"></script>
+     <script src="js/controllers/DashboardController.js"></script>
     <script src="js/controllers/GeoLocationController.js"></script>
     <script src="js/controllers/MapController.js"></script>
     <script src="js/controllers/MarkerController.js"></script>
@@ -50,33 +51,12 @@
       </div>
     </div>
     <div ui-view></div>
-    <div id='tags' ng-controller="brimAppController as ctrl">
-    <figure ng-controller="MapCtrl">
-      <gmap id="map" center="current-location" zoom="15"></gmap>
-      <map-marker
-        ng-repeat="location in locations"
-        ng-class="{'active':location.isActive}"
-        ng-style="{'background-image':'url(' + location.url + ')'}"
-        ng-mouseenter="location.isActive=true"
-        ng-mouseleave="location.isActive=false">
-        <div ng-mouseenter="options=true" ng-mouseleave="options=false">
-          <div id="username" ng-show="options">{{location.name}}</div>
-          <div id="caption" ng-show="options">{{location.caption}}</div>
-        </div>
-      </map-marker>
-    <!--   <button ng-click='clear()'>reset</button> -->
-    </figure>
-
-   <!--  <div ng-controller="MapCtrl as ctrl">
-      <button ng-click="ctrl.centerMap()">Reset Map Images</button>
-    </div> -->
 
     <ul ng-controller="LocationsCtrl">
       <li id="photo-list" ng-repeat="location in locations">
         {{location.name}}
       </li>
     </ul>
->>>>>>> master
 
     <div id='tags' ng-controller="InstagramController as ctrl">
 
