@@ -1,19 +1,19 @@
 <div>
   <form>
     <fieldset id="search-block" class="buffer">
-      <input type="text" ng-model="tagsearch" id="searchTags" class="buffer" value="" placeholder="Enter something to search" autocomplete="off">
+      <input type="text" ng-model="searchParam" id="searchTags" class="buffer" value="" placeholder="Enter something to search" autocomplete="off">
 
       <div id="button-block" class="buffer">
-        <button class="search-button" id="searchTagSubmit" ng-click="getTags(tagsearch)" alt="search by hashtag" title="search by tag">
+        <button class="search-button" id="searchTagSubmit" ng-click="getTags(searchParam)" alt="search by hashtag" title="search by tag">
           <i class="fa fa-hashtag" aria-hidden="true"></i>
         </button>
 
-        <button class="search-button" id="searchImageSubmit" ng-click="getImagesByTag(tagsearch)" alt="search by image" title="search by image">
+        <button class="search-button" id="searchImageSubmit" ng-click="getImagesByTag(searchParam)" alt="search by image" title="search by image">
           <i class="fa fa-picture-o" aria-hidden="true"></i>
         </button>
 
         <button class="search-button" id="searchLocationSubmit" alt="search by location" title="search by location">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          <i class="fa fa-map-marker" aria-hidden="true" ng-click="searchByLocation(searchParam)"></i>
         </button>
       </div>
       
@@ -22,16 +22,17 @@
 
   {{error}}
 
-<!--           <span ng-repeat='chosenTag in chosenTags'>
-          <span id="chosenTags">{{ chosenTag }}  </span>
-          <span ng-click="removeTag(chosenTag)">X</span>
-        </span>
+<!--   <span ng-repeat='chosenTag in chosenTags'>
+    <span id="chosenTags">{{ chosenTag }}  </span>
+    <span ng-click="removeTag(chosenTag)">X</span>
+  </span>
 
-        <br><br>
+  <br><br> -->
 
-        <span ng-repeat='tag in tags'>
-          <span id="relatedTags" ng-click="saveTag(tag.name)">{{ tag.name }}</span>
-        </span> -->
+  <div id="tags-list">
+    <p id="relatedTags" ng-repeat='tag in tags' ng-click="saveTag(tag.name)">{{ tag.name }}</p>
+    <p id="relatedTags" ng-repeat='address in addressList' ng-click="">{{ address.formatted_address }}</p>
+  </div>
 
     <figure class="buffer">
       <gmap id="map" center="current-location" zoom="15"></gmap>
@@ -78,17 +79,7 @@
         <button ng-click="searchTagsWithLocation('or')">tags or loc</button>
         <button ng-click="searchTagsWithLocation('and')">tags and loc</button><br>
 
-        <input id="searchLocation" type="text" ng-model="address" placeholder="Location/Postcode">
-        <button id="locationSubmit" ng-click="searchByLocation(address)">Search Location</button>
-
-        <br>
-
-        <div ng-repeat='address in addressList'>
-          <p ng-click="getImageByLocation(address.geometry.location.lat,address.geometry.location.lng)">
-            {{address.formatted_address}}
-          </p>
-        </div>
-        <br>
+  
 
         <button ng-click="resetMapImages()">Reset Map Images</button>
 
