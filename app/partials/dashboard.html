@@ -8,7 +8,7 @@
           <i class="fa fa-hashtag" aria-hidden="true"></i>
         </button>
 
-        <button class="search-button" id="searchImageSubmit" ng-click="getImagesByTag(searchParam)" alt="search by image" title="search by image">
+        <button class="search-button" id="searchImageSubmit" ng-click="searchByTag(searchParam)" alt="search by image" title="search by image">
           <i class="fa fa-picture-o" aria-hidden="true"></i>
         </button>
 
@@ -44,11 +44,13 @@
         </div> -->
       </map-marker>
     </figure>
+          <br><br>
+          <button ng-click='tester()'>tester</button>
+          {{images}}
 
       <div id='tags' class="buffer">
 
-        <button ng-click='tester("51.4036535","-0.3493859")'>tester</button>
-          {{testdata}}
+        <!-- <button ng-click='tester("51.4036535","-0.3493859")'>tester</button> -->
 
         <br><br>
 

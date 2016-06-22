@@ -41,15 +41,39 @@ angular.module("brimApp")
     }
   };
 
-  $scope.tester = function(lat,lng) {
-    GetImageByLocationService.get(lat,lng).then(function(response) {
-      return response
-    }).then(function(response){
-      response.forEach(function(array){
-        $scope.testdata.push(array)
+  // $scope.tester = function(lat,lng) {
+  //   GetImageByLocationService.get(lat,lng).then(function(response) {
+  //     return response
+  //   }).then(function(response){
+  //     response.forEach(function(array){
+  //       $scope.testdata.push(array)
+  //     })
+  //   });
+  // }
+
+  $scope.searchAllTags = function() {
+    $scope.images = [];
+    var storage = [];
+    var tags = $scope.searchParam.split(",");
+    console.log(tags)
+    tags.forEach(function(tag){
+      GetImagesByTagService.get(tag).then(function(response){
+        storage.push(response.data)
+      }).then(function(){
+        $scope.images = [].concat.apply([],storage)
+        $scope.transferInfo($scope.images)
       })
+    })
+  }
+
+  $scope.searchOneTag = function(tag) {
+    GetImagesByTagService.get(tag).then(function(response) {
+      $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+      $scope.images = response.data;
+      $scope.transferInfo(response.data)
     });
   }
+
 
   $scope.getTags = function(tagsearch) {
     GetTagsService.get(tagsearch).then(function(response) {
@@ -74,23 +98,22 @@ angular.module("brimApp")
 
 
 
-  $scope.getImagesByTag = function(tag) {
+  $scope.searchByTag = function(tag) {
     $scope.images = [];
     $scope.locations = [];
     var tags = $scope.searchParam.split(",");
-    console.log(tags)
     if(tags.length<2){
-      GetImagesByTagService.get(tag).then(function(response) {
-        $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
-        $scope.images = response.data;
-        $scope.transferInfo(response.data)
-      });
+      $scope.searchOneTag(tag);
     }
+    else {
+      $scope.searchAllTags();
+    };
   }
 
   $scope.searchMultipleTags = function(arg) {
     if(arg === 'or') {
-      $scope.chosenTags.forEach(function(tag){
+      var tags = $scope.searchParam.split(",");
+      tags.forEach(function(tag){
         $scope.getImagesByTags(tag)
       })
     }
@@ -114,15 +137,6 @@ angular.module("brimApp")
     }
   };
 
-  $scope.searchByLocation = function(address) {
-    $scope.addressList = []
-    GetGeocodeService.getGeocode(address).then(function(response) {
-      response.forEach(function(address) {
-        $scope.addressList.push(address)
-      })
-    });
-  };
-
   $scope.getImagesByTags = function(tag) {
     // $scope.images = []
     // $scope.locations = []
@@ -134,6 +148,15 @@ angular.module("brimApp")
       })
     });
   }
+
+  $scope.searchByLocation = function(address) {
+    $scope.addressList = []
+    GetGeocodeService.getGeocode(address).then(function(response) {
+      response.forEach(function(address) {
+        $scope.addressList.push(address)
+      })
+    });
+  };
 
   $scope.getImageByLocation = function(lat, lng) {
     $scope.images = []
