@@ -15,11 +15,17 @@
       </map-marker>
     </figure>
 
-    <ul ng-controller="LocationsCtrl">
+    <ul>
       <li id="photo-list"
         ng-repeat="location in locations"
         ng-mouseenter="location.isActive=true"
         ng-mouseleave="location.isActive=false">
+        {{location.name}}
+      </li>
+    </ul>
+
+    <ul>
+      <li id="photo-list" ng-repeat="location in locations">
         {{location.name}}
       </li>
     </ul>
