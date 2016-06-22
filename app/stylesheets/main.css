@@ -1,3 +1,8 @@
+.buffer {
+  padding: 0 40px 0 40px;
+  width: 100%;
+}
+
 figure {
 /*  position: absolute;*/
   padding: 0 40px 0 40px;
