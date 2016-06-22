@@ -1,11 +1,9 @@
 angular.module("brimApp")
-.controller('DashboardController', function($rootScope, $scope, $element, locationFactory, NgMap, infoTransferService, mapMarkerService, GetGeocodeService, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
+.controller('DashboardController', function($rootScope, $scope, $element, locationFactory, NgMap, mapMarkerService, GetGeocodeService, GetTagsService, GetImagesByTagService, GetImageByLocationService, locationFactory) {
 
-// brimApp.controller("InstagramController", ['GetGeocodeService', 'infoTransferService', '$scope', 'GetTagsService','GetImagesByTagService', 'GetImageByLocationService', 'locationFactory', function(, infoTransferService, $scope, ) {
+  $scope.locations = [];
 
-
-
-  // Map Controller
+  // Map Controller & Location Controller
   var mapEl = $element.find('gmap')[0];
   var mapOptions = {
     zoom: 13,
@@ -15,14 +13,11 @@ angular.module("brimApp")
 
   var gmap = new google.maps.Map(mapEl, mapOptions);
   $scope.gmap = gmap;
-  $scope.locations = infoTransferService.info;
 
-  // Location Controller
-  $scope.locations = infoTransferService.info;
 
   // Instagram Controller
   $scope.resetMapImages = function() {
-      infoTransferService.resetInfo();
+      $scope.locations = [];
     }
 
   $scope.getResponseSuccess = function(scope, res, err) {
@@ -84,7 +79,7 @@ angular.module("brimApp")
 
   $scope.getImagesByTag = function(tag) {
     $scope.images = [];
-    infoTransferService.resetInfo();
+    $scope.locations = [];
     GetImagesByTagService.get(tag).then(function(response) {
       $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
       $scope.images = response.data;
@@ -94,7 +89,7 @@ angular.module("brimApp")
 
   $scope.getImagesByTags = function(tag) {
     $scope.images = []
-    infoTransferService.resetInfo()
+    $scope.locations = []
     GetImagesByTagService.get(tag).then(function(response) {
       $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
       $scope.transferInfo(response.data)
@@ -106,7 +101,7 @@ angular.module("brimApp")
 
   $scope.getImageByLocation = function(lat, lng) {
     $scope.images = []
-    infoTransferService.resetInfo()
+    $scope.locations = []
     GetImageByLocationService.get(lat,lng).then(function(response){
       $scope.transferInfo(response.data)
       $scope.images = response.data
@@ -166,7 +161,7 @@ angular.module("brimApp")
 
   $scope.transferInfo = function(data) {
     data.forEach(function(item){
-      infoTransferService.addInfo(new locationFactory(item.caption.from.username,
+      $scope.locations.push(new locationFactory(item.caption.from.username,
                                                       item.caption.text,
                                                       item.location.latitude,
                                                       item.location.longitude,
