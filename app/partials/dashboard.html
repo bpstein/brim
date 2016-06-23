@@ -21,7 +21,7 @@
   </form>
 
   {{error}}
-  <div class="buffer">Searching tags: {{searchParam}}</div>
+  <div class="buffer" id="tag-status">Searching tags: {{searchParam}}</div>
 
   <span ng-repeat='chosenTag in chosenTags'>
     <span id="chosenTags">{{ chosenTag }}  </span>
@@ -72,21 +72,23 @@
 
         <br><br>
 
-        <div class="container-fluid text-center">
-          <div id="images" ng-repeat='image in images' class="col-sm-4">
-            <div class="image-list">
-              <img src="{{ image.images.low_resolution.url }}">
-              <div>{{image.user.username}}</div>
-              <div>{{image.caption.text}}</div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-
-
+        <span ng-repeat='image in images' class="image-list">
+          <img src="{{ image.images.thumbnail.url }}">
+<!--             <div>{{image.user.username}}</div>
+            <div>{{image.caption.text}}</div> -->
+        </span>
+        <span ng-repeat='image in images' class="image-list">
+          <img src="{{ image.images.thumbnail.url }}">
+        </span>
+        <span ng-repeat='image in images' class="image-list">
+          <img src="{{ image.images.thumbnail.url }}">
+        </span>
+        <span ng-repeat='image in images' class="image-list">
+          <img src="{{ image.images.thumbnail.url }}">
+        </span>
+        <span ng-repeat='image in images' class="image-list">
+          <img src="{{ image.images.thumbnail.url }}">
+        </span>
 
 
       </div>

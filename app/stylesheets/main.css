@@ -76,6 +76,10 @@ body {
   padding-left: 10px;
 }
 
+#tag-status {
+  color: #DCDCDC;
+}
+
 fieldset {
   display: block;
   -webkit-margin-start: 2px;
@@ -115,10 +119,10 @@ map-marker {
   display: block;
   cursor: pointer;
   transition: all .3s;
-  border-bottom: 2px solid #fffaf0;
-  border-top: 2px solid #fffaf0;
-  border-left: 2px solid #fffaf0;
-  border-right: 2px solid #fffaf0;
+  border-bottom: 2px solid #DCDCDC;
+  border-top: 2px solid #DCDCDC;
+  border-left: 2px solid #DCDCDC;
+  border-right: 2px solid #DCDCDC;
   border-radius: 5%;
 }
 
@@ -129,10 +133,10 @@ map-marker.active {
   margin-left: -100px;
   background-size: 100%;
   z-index: 5;
-  border-bottom: 2px solid #fffaf0;
-  border-top: 2px solid #fffaf0;
-  border-left: 2px solid #fffaf0;
-  border-right: 2px solid #fffaf0;
+  border-bottom: 2px solid #DCDCDC;
+  border-top: 2px solid #DCDCDC;
+  border-left: 2px solid #DCDCDC;
+  border-right: 2px solid #DCDCDC;
   border-radius: 5%;
 }
 
@@ -150,7 +154,7 @@ map-marker, map-marker.active {
   border-radius: 5%;
   overflow:auto;
   position: absolute;
-  margin-right: 20px;
+  margin-right: 0px;
 }
 
 #username {
@@ -177,20 +181,7 @@ li:hover{
 }
 
 .image-list {
-  border-radius: 5%;
-  border-bottom: 30px solid #fffaf0;
-  border-top: 16px solid #fffaf0;
-  border-left: 8px solid #fffaf0;
-  border-right: 8px solid #fffaf0;
-  background-color: #fffaf0;
-  background-size: 100%;
-  box-shadow: 4px 4px 4px #888888;
-  margin-bottom: 20px;
-}
-
-.image-list img {
-  background-color: #fffaf0;
-  border-radius: 5%;
+  margin-left: -4px;
 }
 
 .photo-username {
