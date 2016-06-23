@@ -25,17 +25,17 @@
           <i class="fa fa-map-marker" aria-hidden="true"></i>
         </button>
 
-
-
-
       </div>
 
     </fieldset>
   </form>
 
-  {{error}}
-  <div class="buffer">Searching tags: {{searchParam}}</div>
-  {{andOr}}
+  <div class="buffer error">{{error}}</div>
+  <span ng-repeat='chosenTag in chosenTags'>
+    <span id="chosenTags">{{ chosenTag }}  </span>
+    <span ng-click="removeTag(chosenTag)">X</span>
+  </span>
+
   <br><br>
 
   <div id="tags-list">
@@ -65,32 +65,61 @@
 
         <!-- <button ng-click='tester("51.4036535","-0.3493859")'>tester</button> -->
 
-        <br><br>
-
-        <button id='tagAnd-button' ng-click="searchMultipleTags('and')">Search for images with all tags</button>
+       <br><br>
 
         <button ng-click="getImageByLocation()">loc button</button>
         <button ng-click="searchTagsWithLocation('or')">tags or loc</button>
         <button ng-click="searchTagsWithLocation('and')">tags and loc</button><br>
-
+  
         <br><br>
+        <div id="image-grid" data-masonry='{ "itemSelector": ".image-item", "columnWidth": 200 }'>
 
-        <div class="container-fluid text-center">
-          <div id="images" ng-repeat='image in images' class="col-sm-4">
-            <div class="image-list">
-              <img src="{{ image.images.low_resolution.url }}">
-              <div>{{image.user.username}}</div>
-              <div>{{image.caption.text}}</div>
+          <div ng-repeat='image in images' class="image-list">
+            <img src="{{ image.images.thumbnail.url }}" class="image-item">
+            <div class="overlay">
+              <span class="image-username">{{image.user.username}}</span>
+              <br>
+              <span class="image-caption">{{image.caption.text}}
             </div>
           </div>
+
+          <span ng-repeat='image in images' class="image-list" ng-mouseenter="location.isActive=true; optionsSet('true')"
+          ng-mouseleave="location.isActive=false; optionsSet('false')">
+            <img src="{{ image.images.low_resolution.url }}" class="image-item">
+            <div class="overlay">
+              <span class="image-username">{{image.user.username}}</span>
+              <br>
+              <span class="image-caption">{{image.caption.text}}
+            </div>
+          </span>
+
+          <span ng-repeat='image in images' class="image-list">
+            <img src="{{ image.images.thumbnail.url }}" class="image-item">
+            <div class="overlay">
+              <span class="image-username">{{image.user.username}}</span>
+              <br>
+              <span class="image-caption">{{image.caption.text}}
+            </div>
+          </span>
+
+          <span ng-repeat='image in images' class="image-list">
+            <img src="{{ image.images.thumbnail.url }}" class="image-item">
+            <div class="overlay">
+              <span class="image-username">{{image.user.username}}</span>
+              <br>
+              <span class="image-caption">{{image.caption.text}}
+            </div>
+          </span>
+
+          <span ng-repeat='image in images' class="image-list">
+            <img src="{{ image.images.thumbnail.url }}" class="image-item">
+            <div class="overlay">
+              <span class="image-username">{{image.user.username}}</span>
+              <br>
+              <span class="image-caption">{{image.caption.text}}
+            </div>
+          </span>
         </div>
-
-
-
-
-
-
-
 
       </div>
 </div>

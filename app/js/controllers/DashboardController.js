@@ -277,22 +277,4 @@ angular.module("brimApp")
                                                       item.images.thumbnail.url))
     })
   }
-
-  // $scope.optionsSet = function(bool) {
-  //   if(bool === 'true') {$scope.options = 'true'};
-  //   if(bool === 'false') {$scope.options = 'false'};
-  // }
-
-  // $scope.options = 'true';
-
-
-  // $scope.removeTag = function(tag) {
-  //   array = $scope.searchParam.split(',');
-  //   if(array.includes(tag)){
-  //     var ind = array.indexOf(tag);
-  //     array.splice(ind, 1);
-  //     $scope.searchParam = array.join(',');
-  //   }
-  // };
-
 });

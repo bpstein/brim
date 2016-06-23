@@ -4,9 +4,20 @@ body {
 /*  background-color: rgba(162, 205, 233, 0.53);
 */}
 
+.navbar ul {
+  top: -14px;
+  left: 40px;
+}
+
 .buffer {
   padding: 0 40px 0 40px;
   margin-bottom: -25px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 15px;
+  position: absolute;
 }
 
 #logo {
@@ -110,6 +121,10 @@ body {
   padding-left: 10px;
 }
 
+#tag-status {
+  color: #DCDCDC;
+}
+
 fieldset {
   display: block;
   -webkit-margin-start: 2px;
@@ -149,10 +164,10 @@ map-marker {
   display: block;
   cursor: pointer;
   transition: all .3s;
-  border-bottom: 2px solid #fffaf0;
-  border-top: 2px solid #fffaf0;
-  border-left: 2px solid #fffaf0;
-  border-right: 2px solid #fffaf0;
+  border-bottom: 2px solid #DCDCDC;
+  border-top: 2px solid #DCDCDC;
+  border-left: 2px solid #DCDCDC;
+  border-right: 2px solid #DCDCDC;
   border-radius: 5%;
 }
 
@@ -163,10 +178,10 @@ map-marker.active {
   margin-left: -100px;
   background-size: 100%;
   z-index: 5;
-  border-bottom: 2px solid #fffaf0;
-  border-top: 2px solid #fffaf0;
-  border-left: 2px solid #fffaf0;
-  border-right: 2px solid #fffaf0;
+  border-bottom: 2px solid #DCDCDC;
+  border-top: 2px solid #DCDCDC;
+  border-left: 2px solid #DCDCDC;
+  border-right: 2px solid #DCDCDC;
   border-radius: 5%;
 }
 
@@ -176,15 +191,14 @@ map-marker, map-marker.active {
 }
 
 #tags-list {
-  /*width: 15%;*/
+  width:240px;
   right: 40px;
   height: 60vh;
-  width:240px;
-  border: 3px solid #ccc;
   border-radius: 5%;
   overflow:auto;
+  background-color: #f8f8f8;
+  border: 3px solid #ccc;
   position: absolute;
-  /*margin-right: 5px;*/
 }
 
 #username {
@@ -211,24 +225,55 @@ li:hover{
 }
 
 .image-list {
-  border-radius: 5%;
-  border-bottom: 30px solid #fffaf0;
-  border-top: 16px solid #fffaf0;
-  border-left: 8px solid #fffaf0;
-  border-right: 8px solid #fffaf0;
-  background-color: #fffaf0;
-  background-size: 100%;
-  box-shadow: 4px 4px 4px #888888;
-  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
 }
 
-.image-list img {
-  background-color: #fffaf0;
-  border-radius: 5%;
+.image-item, .image-list, .overlay { 
+  width: 100px; 
+  height: 100px;
 }
 
-.photo-username {
+.overlay {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+  color: #fff;
+  display: none;
+  z-index: 2;
 }
 
-.photo-caption {
+.image-list .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  color: #fff;
 }
+
+.image-list:hover .overlay {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .6);
+}
+
+.image-username {
+  top: 5px;
+  left: 3px;
+}
+
+.image-caption, .image-username {
+  font-family: "Helvetica Neue", HelveticaNeue, "Arimo", "Source Sans Pro", "Open Sans", "Roboto", Helvetica, Arial, sans-serif;
+}
+
+
+
+
