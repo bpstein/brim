@@ -24,9 +24,6 @@ angular.module("brimApp")
 
 
   // Instagram Controller
-  $scope.resetMapImages = function() {
-      $scope.locations = [];
-    }
 
   $scope.getResponseSuccess = function(scope, res, err) {
     if (res.meta.code !== 200) {
@@ -53,31 +50,84 @@ angular.module("brimApp")
 
 
 
-  $scope.tester = function() {
-    var holding = [];
+  // $scope.tester = function() {
+  //   var holding = [];
 
+  //   $scope.images = [];
+  //   var storage = [];
+  //   var tags = $scope.searchParam.split("+");
+  //   tags.forEach(function(tag){
+  //     GetImagesByTagService.get(tag).then(function(response){
+  //       storage.push(response.data)
+  //     }).then(function(){
+  //       $scope.images = [].concat.apply([],storage)
+  //     })
+  //   })
+  //   .then(function(){
+  //     var images = $scope.images
+  //     images.forEach(function(image){
+  //       var ctr = 0
+  //       image.tags.forEach(function(tag){
+  //         if(image.tags.includes(tag)){
+  //           ctr++
+  //         }
+  //       })
+  //       if(ctr===images.tags.length){holding.push(image)}
+  //     })
+  //   }).then(function(){$scope.images = holding})
+  // }
+
+  $scope.setAndOr = function(arg){
+    if(arg==='or'){$scope.andOr='or'}
+    if(arg==='and'){$scope.andOr='and'}
+  }
+
+  $scope.tester = function() {
     $scope.images = [];
     var storage = [];
-    var tags = $scope.searchParam.split("+");
-    tags.forEach(function(tag){
-      GetImagesByTagService.get(tag).then(function(response){
-        storage.push(response.data)
-      }).then(function(){
-        $scope.images = [].concat.apply([],storage)
-      })
-    })
-    .then(function(){
-      var images = $scope.images
-      images.forEach(function(image){
-        var ctr = 0
-        image.tags.forEach(function(tag){
+    var tags = $scope.searchParam.split("+")
+    console.log(tags)
+    GetImagesByTagService.get(tags[0]).then(function(response) {
+      $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+      response.data.forEach(function(image){
+        var tagctr = 0;
+        tags.forEach(function(tag) {
           if(image.tags.includes(tag)){
-            ctr++
+            tagctr++;
           }
         })
-        if(ctr===images.tags.length){holding.push(image)}
+        if(tagctr === tags.length) {
+          storage.push(image)
+        }
       })
-    }).then(function(){$scope.images = holding})
+      console.log(storage)
+    });
+      $scope.images = storage
+      $scope.transferInfo($scope.images)
+  }
+
+  $scope.searchImagesWithEachTag = function() {
+    $scope.images = [];
+    var storage = [];
+    var tags = $scope.searchParam.split("+")
+    console.log(tags)
+    GetImagesByTagService.get(tags[0]).then(function(response) {
+      $scope.getResponseSuccess($scope, response, "This hashtag has returned no results" )
+      response.data.forEach(function(image){
+        var tagctr = 0;
+        tags.forEach(function(tag) {
+          if(image.tags.includes(tag)){
+            tagctr++;
+          }
+        })
+        if(tagctr === tags.length) {
+          storage.push(image)
+        }
+      })
+      console.log(storage)
+    });
+      $scope.images = storage
+      $scope.transferInfo($scope.images)
   }
 
   $scope.searchAllTags = function() {

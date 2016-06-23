@@ -72,6 +72,40 @@ body {
   display: inline;
 }
 
+#and-search,
+#or-search{
+  border-radius: 50%;
+  height: 25px; width: 25px;
+  border: none;
+  font-size: 10px;
+  margin-top: -10px;
+  right: 0px;
+  display: inline;
+}
+
+/*#and-search{
+  border-radius: 50%;
+  height: 25px; width: 25px;
+  border: none;
+  font-size: 10px;
+  margin-top: -10px;
+  margin-right: 250px;
+  right: 0px;
+  display: inline;
+  position: absolute;
+}
+
+#or-search{
+  border-radius: 50%;
+  height: 25px; width: 25px;
+  border: none;
+  font-size: 10px;
+  margin-top: -10px;
+  right: 0px;
+  display: inline;
+  position: absolute;
+}
+*/
 #relatedTags {
   padding-left: 10px;
 }

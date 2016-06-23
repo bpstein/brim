@@ -4,17 +4,30 @@
       <input type="text" ng-model="searchParam" id="searchTags" placeholder="Enter something to search" autocomplete="off">
 
       <div id="button-block" class="buffer">
-        <button class="search-button" id="searchTagSubmit" ng-click="getTags(searchParam)" alt="search by hashtag" title="search by tag">
+
+        <button class="search-button" id="or-search" alt="search by location" title="search by location" ng-click="setAndOr('or')">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </button>
+
+        <button class="search-button" id="or-search" alt="search by location" title="search by location" ng-click="setAndOr('and')">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </button>
+
+        <button class="search-button" id="searchTagSubmit" ng-click="getTags(searchParam)" alt="search by hashtag" title="search for related tags">
           <i class="fa fa-hashtag" aria-hidden="true"></i>
         </button>
 
-        <button class="search-button" id="searchImageSubmit" ng-click="searchByTags(searchParam)" alt="search by image" title="search by image">
+        <button class="search-button" id="searchImageSubmit" ng-click="searchByTags(searchParam)" alt="search images by tag/tags" title="search by image">
           <i class="fa fa-picture-o" aria-hidden="true"></i>
         </button>
 
-        <button class="search-button" id="searchLocationSubmit" alt="search by location" title="search by location">
-          <i class="fa fa-map-marker" aria-hidden="true" ng-click="searchByLocation(searchParam)"></i>
+        <button class="search-button" id="searchLocationSubmit" alt="search by location" title="search by location" ng-click="searchByLocation(searchParam)">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
         </button>
+
+
+
+
       </div>
 
     </fieldset>
@@ -22,7 +35,7 @@
 
   {{error}}
   <div class="buffer">Searching tags: {{searchParam}}</div>
-
+  {{andOr}}
   <br><br>
 
   <div id="tags-list">
@@ -54,18 +67,11 @@
 
         <br><br>
 
-        <button id='tagOr-button' ng-click="searchMultipleTags('or')">Search for images with tags</button>
-
         <button id='tagAnd-button' ng-click="searchMultipleTags('and')">Search for images with all tags</button>
 
         <button ng-click="getImageByLocation()">loc button</button>
         <button ng-click="searchTagsWithLocation('or')">tags or loc</button>
         <button ng-click="searchTagsWithLocation('and')">tags and loc</button><br>
-
-
-
-        <button ng-click="resetMapImages()">Reset Map Images</button>
-
 
         <br><br>
 
