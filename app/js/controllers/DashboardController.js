@@ -78,8 +78,14 @@ angular.module("brimApp")
   // }
 
   $scope.setAndOr = function(arg){
-    if(arg==='or'){$scope.andOr='or'}
-    if(arg==='and'){$scope.andOr='and'}
+    if(arg==='or'){
+      $scope.andOr='or';
+      $scope.searchParam = $scope.searchParam.replace(/,/g,'+');
+    }
+    if(arg==='and'){
+      $scope.andOr='and';
+      $scope.searchParam = $scope.searchParam.replace(/\+/g,',');
+    }
   }
 
   $scope.tester = function() {
