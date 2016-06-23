@@ -1,26 +1,96 @@
 <div>
-  <p>Hello, this a secret page!</p>
-    <figure ng-controller="MapCtrl">
+  <form>
+    <fieldset id="search-block" class="buffer">
+      <input type="text" ng-model="searchParam" id="searchTags" placeholder="Enter something to search" autocomplete="off">
+
+      <div id="button-block" class="buffer">
+
+        <button class="search-button" id="or-search" alt="search by location" title="search by location" ng-click="setAndOr('or')">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </button>
+
+        <button class="search-button" id="or-search" alt="search by location" title="search by location" ng-click="setAndOr('and')">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </button>
+
+        <button class="search-button" id="searchTagSubmit" ng-click="getTags(searchParam)" alt="search by hashtag" title="search for related tags">
+          <i class="fa fa-hashtag" aria-hidden="true"></i>
+        </button>
+
+        <button class="search-button" id="searchImageSubmit" ng-click="searchByTags(searchParam)" alt="search images by tag/tags" title="search by image">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+        </button>
+
+        <button class="search-button" id="searchLocationSubmit" alt="search by location" title="search by location" ng-click="searchByLocation(searchParam)">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        </button>
+
+
+
+
+      </div>
+
+    </fieldset>
+  </form>
+
+  {{error}}
+  <div class="buffer">Searching tags: {{searchParam}}</div>
+  {{andOr}}
+  <br><br>
+
+  <div id="tags-list">
+    <p id="relatedTags" ng-repeat='tag in tags' ng-click="saveTag(tag.name)">{{ tag.name }} ({{tag.media_count}})</p>
+    <p id="relatedTags" ng-repeat='address in addressList' ng-click="">{{ address.formatted_address }}</p>
+  </div>
+
+    <figure class="buffer">
       <gmap id="map" center="current-location" zoom="15"></gmap>
       <map-marker
         ng-repeat="location in locations"
         ng-class="{'active':location.isActive}"
         ng-style="{'background-image':'url(' + location.url + ')'}"
-        ng-mouseenter="location.isActive=true"
-        ng-mouseleave="location.isActive=false">
-        <div ng-mouseenter="options=true" ng-mouseleave="options=false">
-          <div id="username" ng-show="options">{{location.name}}</div>
-          <div id="caption" ng-show="options">{{location.caption}}</div>
-        </div>
+        ng-mouseenter="location.isActive=true; optionsSet('true')"
+        ng-mouseleave="location.isActive=false; optionsSet('false')">
+<!--         <div>
+          <span id="username" ng-show="options==='true'">{{location.name}}</span>
+          <span id="caption" ng-show="options==='true'">{{location.caption}}</span>
+        </div> -->
       </map-marker>
     </figure>
+          <br><br>
+          <button ng-click='tester()'>tester</button>
+          {{images}}
 
-    <ul ng-controller="LocationsCtrl">
-      <li id="photo-list"
-        ng-repeat="location in locations"
-        ng-mouseenter="location.isActive=true"
-        ng-mouseleave="location.isActive=false">
-        {{location.name}}
-      </li>
-    </ul>
+      <div id='tags' class="buffer">
+
+        <!-- <button ng-click='tester("51.4036535","-0.3493859")'>tester</button> -->
+
+        <br><br>
+
+        <button id='tagAnd-button' ng-click="searchMultipleTags('and')">Search for images with all tags</button>
+
+        <button ng-click="getImageByLocation()">loc button</button>
+        <button ng-click="searchTagsWithLocation('or')">tags or loc</button>
+        <button ng-click="searchTagsWithLocation('and')">tags and loc</button><br>
+
+        <br><br>
+
+        <div class="container-fluid text-center">
+          <div id="images" ng-repeat='image in images' class="col-sm-4">
+            <div class="image-list">
+              <img src="{{ image.images.low_resolution.url }}">
+              <div>{{image.user.username}}</div>
+              <div>{{image.caption.text}}</div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+      </div>
 </div>

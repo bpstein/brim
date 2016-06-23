@@ -3,11 +3,13 @@
 <html lang="en" ng-app="brimApp">
   <head>
     <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo|Lato|Open+Sans|Roboto|Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <link href="/stylesheets/main.css" rel="stylesheet" type="text/css">
-    <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -19,16 +21,13 @@
     <script src="js/controllers/authController.js"></script>
     <script src="js/controllers/homeController.js"></script>
     <script src="js/controllers/navbarController.js"></script>
+    <script src="js/controllers/DashboardController.js"></script>
     <script src="js/controllers/GeoLocationController.js"></script>
-    <script src="js/controllers/MapController.js"></script>
     <script src="js/controllers/MarkerController.js"></script>
-    <script src="js/controllers/LocationController.js"></script>
     <script src="js/services/MapMarkerService.js"></script>
     <script src="js/services/LocationFactory.js"></script>
     <script src="bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-    <script src="js/controllers/InstagramController.js"></script>
     <script src="js/services/GetTagsService.js"></script>
-    <script src="js/services/infoTransferService.js"></script>
     <script src="js/services/GetImagesByTagService.js"></script>
     <script src="js/services/GetImageByLocationService.js"></script>
     <script src="js/directives/serverError.js"></script>
@@ -50,93 +49,6 @@
       </div>
     </div>
     <div ui-view></div>
-    <div id='tags' ng-controller="brimAppController as ctrl">
-    <figure ng-controller="MapCtrl">
-      <gmap id="map" center="current-location" zoom="15"></gmap>
-      <map-marker
-        ng-repeat="location in locations"
-        ng-class="{'active':location.isActive}"
-        ng-style="{'background-image':'url(' + location.url + ')'}"
-        ng-mouseenter="location.isActive=true"
-        ng-mouseleave="location.isActive=false">
-        <div ng-mouseenter="options=true" ng-mouseleave="options=false">
-          <div id="username" ng-show="options">{{location.name}}</div>
-          <div id="caption" ng-show="options">{{location.caption}}</div>
-        </div>
-      </map-marker>
-    <!--   <button ng-click='clear()'>reset</button> -->
-    </figure>
-
-   <!--  <div ng-controller="MapCtrl as ctrl">
-      <button ng-click="ctrl.centerMap()">Reset Map Images</button>
-    </div> -->
-
-    <ul ng-controller="LocationsCtrl">
-      <li id="photo-list" ng-repeat="location in locations">
-        {{location.name}}
-      </li>
-    </ul>
->>>>>>> master
-
-    <div id='tags' ng-controller="InstagramController as ctrl">
-
-
-
-      <button ng-click='ctrl.tester("51.4036535","-0.3493859")'>tester</button>
-        {{ctrl.testdata}}
-
-      <span ng-repeat='chosenTag in ctrl.chosenTags'>
-        <span id="chosenTags">{{ chosenTag }}  </span>
-        <span ng-click="ctrl.removeTag(chosenTag)">X</span>
-      </span>
-
-      <br><br>
-
-      <span ng-repeat='tag in ctrl.tags'>
-        <span id="relatedTags" ng-click="ctrl.saveTag(tag.name)">{{ tag.name }}</span>
-      </span>
-
-
-      <br><br>
-
-      <input id="searchTags" type="text" ng-model="tagsearch" placeholder="Enter tag to search">
-
-      <button id="searchTagSubmit" ng-click="ctrl.getTags(tagsearch)">Search Tags</button>
-
-      <button id="searchImageSubmit" ng-click="ctrl.getImagesByTag(tagsearch)">Search Images</button>
-
-      {{error}}
-
-      <button id='tagOr-button' ng-click="ctrl.searchMultipleTags('or')">Search for images with tags</button>
-
-      <button id='tagAnd-button' ng-click="ctrl.searchMultipleTags('and')">Search for images with all tags</button>
-
-      <button ng-click="ctrl.getImageByLocation()">loc button</button>
-      <button ng-click="ctrl.searchTagsWithLocation('or')">tags or loc</button>
-      <button ng-click="ctrl.searchTagsWithLocation('and')">tags and loc</button><br>
-
-      <input id="searchLocation" type="text" ng-model="address" placeholder="Location/Postcode">
-      <button id="locationSubmit" ng-click="ctrl.searchByLocation(address)">Search Location</button>
-
-      <br>
-
-      <div ng-repeat='address in ctrl.addressList'>
-        <p ng-click="ctrl.getImageByLocation(address.geometry.location.lat,address.geometry.location.lng)">
-          {{address.formatted_address}}
-        </p>
-      </div>
-      <br>
-
-      <button ng-click="ctrl.resetMapImages()">Reset Map Images</button>
-
-
-      <br><br>
-
-      <div id="images" ng-repeat='image in ctrl.images'>
-        <img src="{{ image.images.thumbnail.url }}">
-      </div>
-
-    </div>
   </body>
 
 </html>
