@@ -55,7 +55,7 @@
         <button ng-click='tester("51.4036535","-0.3493859")'>tester</button>
           {{testdata}}
 
-        <br><br>
+<!--         <br><br>
 
         <button id='tagOr-button' ng-click="searchMultipleTags('or')">Search for images with tags</button>
 
@@ -67,7 +67,7 @@
 
   
 
-        <button ng-click="resetMapImages()">Reset Map Images</button>
+        <button ng-click="resetMapImages()">Reset Map Images</button> -->
 
 
         <br><br>
@@ -82,8 +82,9 @@
             </div>
           </div>
 
-          <span ng-repeat='image in images' class="image-list">
-            <img src="{{ image.images.thumbnail.url }}" class="image-item">
+          <span ng-repeat='image in images' class="image-list" ng-mouseenter="location.isActive=true; optionsSet('true')"
+          ng-mouseleave="location.isActive=false; optionsSet('false')">
+            <img src="{{ image.images.low_resolution.url }}" class="image-item">
             <div class="overlay">
               <span class="image-username">{{image.user.username}}</span>
               <br>

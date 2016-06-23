@@ -4,6 +4,11 @@ body {
 /*  background-color: rgba(162, 205, 233, 0.53);
 */}
 
+.navbar ul {
+  top: -14px;
+  left: 40px;
+}
+
 .buffer {
   padding: 0 40px 0 40px;
   margin-bottom: -25px;
@@ -156,11 +161,12 @@ map-marker, map-marker.active {
   right: 40px;
   height: 60vh;
   width:200px;
-  border: 3px solid #ccc;
-  border-radius: 5%;
+/*  border: 3px solid #ccc;
+*/  border-radius: 5%;
   overflow:auto;
   position: absolute;
   margin-right: 20px;
+  background-color: #f8f8f8;
 }
 
 #username {
@@ -187,7 +193,6 @@ li:hover{
 }
 
 .image-list {
-  /*margin-left: -4px;*/
   position: relative;
   display: inline-block;
 }
