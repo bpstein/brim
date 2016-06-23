@@ -9,8 +9,8 @@
           <i class="fa fa-map-marker" aria-hidden="true"></i>
         </button>
 
-        <button class="search-button" id="or-search" alt="search by location" title="search by location" ng-click="setAndOr('and')">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <button class="search-button" id="and-search" alt="search by location" title="search by location" ng-click="setAndOr('and')">
+          <i class="fa fa-plus" aria-hidden="true"></i>
         </button>
 
         <button class="search-button" id="searchTagSubmit" ng-click="getTags(searchParam)" alt="search by hashtag" title="search for related tags">
@@ -70,7 +70,7 @@
         <button ng-click="getImageByLocation()">loc button</button>
         <button ng-click="searchTagsWithLocation('or')">tags or loc</button>
         <button ng-click="searchTagsWithLocation('and')">tags and loc</button><br>
-  
+
         <br><br>
         <div id="image-grid" data-masonry='{ "itemSelector": ".image-item", "columnWidth": 200 }'>
 
