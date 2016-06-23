@@ -51,11 +51,39 @@ angular.module("brimApp")
   //   });
   // }
 
+
+
+  $scope.tester = function() {
+    var holding = [];
+
+    $scope.images = [];
+    var storage = [];
+    var tags = $scope.searchParam.split("+");
+    tags.forEach(function(tag){
+      GetImagesByTagService.get(tag).then(function(response){
+        storage.push(response.data)
+      }).then(function(){
+        $scope.images = [].concat.apply([],storage)
+      })
+    })
+    .then(function(){
+      var images = $scope.images
+      images.forEach(function(image){
+        var ctr = 0
+        image.tags.forEach(function(tag){
+          if(image.tags.includes(tag)){
+            ctr++
+          }
+        })
+        if(ctr===images.tags.length){holding.push(image)}
+      })
+    }).then(function(){$scope.images = holding})
+  }
+
   $scope.searchAllTags = function() {
     $scope.images = [];
     var storage = [];
     var tags = $scope.searchParam.split(",");
-    console.log(tags)
     tags.forEach(function(tag){
       GetImagesByTagService.get(tag).then(function(response){
         storage.push(response.data)
@@ -82,6 +110,18 @@ angular.module("brimApp")
     });
   }
 
+  $scope.searchByTags = function(tag) {
+    $scope.images = [];
+    $scope.locations = [];
+    var tags = $scope.searchParam.split(",");
+    if(tags.length<2){
+      $scope.searchOneTag(tag);
+    }
+    else {
+      $scope.searchAllTags();
+    };
+  }
+
   $scope.saveTag = function(tag) {
     if(Array.isArray($scope.searchParam)) {
       var array = $scope.searchParam
@@ -95,20 +135,6 @@ angular.module("brimApp")
     }
     if($scope.searchParam[0]===','){$scope.searchParam=$scope.searchParam.slice(1,$scope.searchParam.length)}
   };
-
-
-
-  $scope.searchByTag = function(tag) {
-    $scope.images = [];
-    $scope.locations = [];
-    var tags = $scope.searchParam.split(",");
-    if(tags.length<2){
-      $scope.searchOneTag(tag);
-    }
-    else {
-      $scope.searchAllTags();
-    };
-  }
 
   $scope.searchMultipleTags = function(arg) {
     if(arg === 'or') {
