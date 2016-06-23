@@ -175,12 +175,4 @@ angular.module("brimApp")
                                                       item.images.thumbnail.url))
     })
   }
-
-  $scope.optionsSet = function(bool) {
-    if(bool === 'true') {$scope.options = 'true'};
-    if(bool === 'false') {$scope.options = 'false'};
-  }
-
-  $scope.options = 'true';
-
 });
